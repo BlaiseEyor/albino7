@@ -76,17 +76,37 @@ def actualite(request):
     # Calculer les dates de seuil
     dernieres_24h = now() - timedelta(hours=24)
     une_semaine = now() - timedelta(weeks=1)
-    # trois_semaines = now() - timedelta(weeks=3)
 
-    # Séparer les missions récentes, anciennes et archivées
-    missions_recentes = Add_mission.objects.filter(date__gte=dernieres_24h).order_by('-date')
-    missions_anciennes = Add_mission.objects.filter(date__lt=dernieres_24h, date__gte=une_semaine).order_by('-date')
-    missions_archivees = Add_mission.objects.filter(date__lt=une_semaine).order_by('-date')
+    # Récupérer les paramètres du formulaire de recherche
+    theme = request.GET.get('theme', '')
+    date_filtre = request.GET.get('date', '')
+
+    # Initialiser la requête de base
+    missions = Add_mission.objects.all()
+
+    # Filtrer par thème si un thème est spécifié
+    if theme:
+        missions = missions.filter(theme__icontains=theme)
+
+    # Filtrer par date si une date est spécifiée
+    if date_filtre == '24h':
+        missions = missions.filter(date__gte=dernieres_24h)
+    elif date_filtre == 'semaine':
+        missions = missions.filter(date__lt=dernieres_24h, date__gte=une_semaine)
+    elif date_filtre == 'archive':
+        missions = missions.filter(date__lt=une_semaine)
+
+    # Limiter les résultats à 6 par catégorie (tu peux ajuster le nombre)
+    missions_recentes = missions.filter(date__gte=dernieres_24h).order_by('-date')[:6]
+    missions_anciennes = missions.filter(date__lt=dernieres_24h, date__gte=une_semaine).order_by('-date')[:6]
+    missions_archivees = missions.filter(date__lt=une_semaine).order_by('-date')[:6]
 
     return render(request, 'AlbinoApp/actualite.html', {
         'missions_recentes': missions_recentes,
         'missions_anciennes': missions_anciennes,
         'missions_archivees': missions_archivees,
+        'theme': theme,
+        'date_filtre': date_filtre,
     })
 
 def deconnexion(request):
