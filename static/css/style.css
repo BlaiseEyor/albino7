@@ -1,0 +1,87 @@
+/* Animation pour faire apparaître les éléments */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation pour l'image */
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInLeft 1s ease-out forwards;
+}
+
+@keyframes fadeInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animation fade-in pour les cartes */
+.fade-in-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInCard 0.8s ease-out forwards;
+}
+
+@keyframes fadeInCard {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Définir l'animation pour l'image */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image {
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.image-container:hover .image {
+    transform: scale(1.05) translateX(10px);
+    opacity: 0.9;
+}
+
+.swiper {
+    width: 100%;
+    height: auto; /* Permet d'adapter la hauteur selon les images */
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto; /* Maintient les proportions des images */
+    object-fit: cover;
+  }
+  
+  /* Styles communs pour les boutons */
+  .swiper-button-next, .swiper-button-prev {
+    color: #fd9104; /* Définit la couleur des icônes */
+    border-radius: 50%; /* Rend les boutons circulaires */
+    width: 40px; /* Taille du bouton */
+    height: 40px; /* Taille du bouton */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }

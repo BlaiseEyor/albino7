@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <section>
+        <nav class="bg-white dark:bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="{% url 'index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3"
+                        alt="Albino 7 Logo" />
+                    <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Albino 7</span> -->
+                </a>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <a href="https://www.facebook.com/share/v/1CdUb5N3JF/"
+                        class="text-gray-500 border border-white rounded-full w-8 h-8 ring-2 ring-gray-300 dark:ring-gray-600  flex items-center justify-center hover:text-yellow-300">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white"
+                            viewBox="0 0 8 19">
+                            <path fill-rule="evenodd"
+                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    {% comment %} <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="drawer-navigation" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button> {% endcomment %}
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul
+                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <!-- <li>
+                            <a href="./index.html" class="nav-link block py-2 px-3 text-yellow-300 bg-yellow-500 rounded-sm md:bg-transparent md:p-0 md:dark:text-yellow-500" aria-current="page">Accueil</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <div class="h-14 lg:h-14"></div>
+    <div class="h-14 lg:h-14"></div>
+    <div class="h-14 lg:h-14"></div>
+
+    <section class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+        <div class="w-full max-w-screen-xl px-4 lg:px-0">
+            <div class="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800 mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                    Se Connecter à mon espace
+                </h2>
+                <form method="post" class="mt-8 space-y-6" id="form-login" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="message"></div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Email
+                        </label>
+                        <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-300 dark:focus:border-yellow-300" placeholder="Email"/>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Mot de passe
+                        </label>
+                        <input type="password" name="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-300 dark:focus:border-yellow-300"/>
+                    </div>
+                    <button type="submit" name="loginBtn" class="w-full px-5 py-3 text-base font-medium text-center text-gray-900 bg-yellow-300 rounded-lg hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-300 dark:hover:bg-yellow-400 dark:focus:ring-yellow-300">
+                        <span id="login-text">Se Connecter</span>
+                        <svg id="login-spinner" style="display: none;" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <style>
+                            .spinner_Pcrv{transform-origin:center;animation:spinner_xeMo .6s linear infinite}@keyframes spinner_xeMo{100%{transform:rotate(360deg)}}
+                          </style>
+                          <path class="spinner_Pcrv" d="M2,12A10.94,10.94,0,0,1,5,4.65c-.21-.19-.42-.36-.62-.55h0A11,11,0,0,0,12,23c.34,0,.67,0,1-.05C6,23,2,17.74,2,12Z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="h-14 lg:h-14"></div>
+    <div class="h-14 lg:h-14"></div>
+    
+    <footer class="bg-gray-800">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text- font-bold text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a
+                        href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                        <img class="h-12 w-30" src="{% static 'images/footer/pt5.png' %}" alt="image description">
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                        <img class="h-12 w-30" src="{% static 'images/footer/pt3.png' %}" alt="image description">
+                    </a>
+                </div>
+            </div>
+    </footer>
+    <script>
+        const formLogin = document.forms['form-login'];
+        formLogin.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        formLogin.loginBtn.disabled = true;
+        formLogin.querySelector('#login-text').style.display = "none"
+        formLogin.querySelector('#login-spinner').style.display = "block"
+        const formData = new FormData(formLogin)
+        fetch('', {
+            method:'POST',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            body: formData
+        }).then(response => response.json())
+            .then(data =>{
+                if(data.success){
+                    formLogin.querySelector('.message').innerHTML = `
+                        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                            <span class="font-medium">${data.message}</span> 
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        location.href = data.redirect;
+                    }, 3000);
+                }
+                else{
+                    formLogin.querySelector('.message').innerHTML = `
+                        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                            <span class="font-medium">${data.error_message}</span> 
+                        </div>
+                    `;
+                }
+            }).catch((error) => console.log(error))
+                .finally(()=>{
+                    formLogin.loginBtn.disabled = false;
+                    formLogin.querySelector('#login-text').style.display = "block"
+                    formLogin.querySelector('#login-spinner').style.display = "none"
+            })
+        })   
+    </script>
+
+{% endblock content %}

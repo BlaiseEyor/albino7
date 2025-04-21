@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <section>
+        <nav
+            class="bg-white dark:bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="{% url 'index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
+                    <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Albino 7</span> -->
+                </a>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <a href="{% url 'login' %}" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+                        Esapce personnel
+                    </a>
+                    <!-- <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="drawer-navigation" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button> -->
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <!-- <li>
+                            <a href="./index.html" class="nav-link block py-2 px-3 text-yellow-300 bg-yellow-500 rounded-sm md:bg-transparent md:p-0 md:dark:text-yellow-500" aria-current="page">Accueil</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <div class="h-20 lg:h-20"></div>
+    <section class="relative">
+        <img class="w-full object-cover" style="height: 370px;" src="{% static 'images/contact/albini7.jpg' %}" alt="image description">
+        <nav class="absolute flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-black/50 text-white rounded-lg w-max">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-3xl font-bold hover:text-blue-400">
+                        Contact
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </section>
+    <div class="h-14 lg:h-14"></div>
+    <section class="dark:bg-gray-900">
+        <div class="mt-2">
+          <p class="text-xl text-white font-bold text-center">Nous contactez</p>
+          <hr class="section-divider w-24 h-1 mx-auto my-8 bg-yellow-300 border-0 rounded">
+        </div>
+        <div class="py-8 px-3 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-4 lg:gap-8">
+            <div class="bg-white shadow-lg min-h-screen border border-yellow-300 dark:bg-gray-800">
+                <div class="flex items-center justify-center m-4 px-4">
+                    <div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px]">
+                        <!-- <iframe class="absolute top-0 left-0 w-full h-full border-0"
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d163844.89441357992!2d-1.6478733573130204!3d47.24802224838361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sNantes%2C%20est%20ch%C3%A2teaubriant!5e0!3m2!1sfr!2sbj!4v1741960218895!5m2!1sfr!2sbj"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe> -->
+                        <iframe class="absolute top-0 left-0 w-full h-full border-0"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85883.02781511513!2d-1.3696355708686743!3d47.72626476215934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4808b56c83c678a3%3A0x566b1bc4bff78c02!2s44110%20Soudan!5e0!3m2!1sfr!2sfr!4v1743754949101!5m2!1sfr!2sfr"
+                            allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="flex flex-wrap">
+                    <div class="mt-8 flex flex-wrap gap-3 m-4 px-4">
+                        <a href="mailto:mariefrance.carre68@gmail.com " class="text-white bg-white from-blue-500 via-blue-600 to-blue-700 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-500 font-medium rounded-full text-sm px-3 py-2.5 text-center me-2 mb-2 btn-animation">
+                            <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="#FDE047" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 2-8.4 7.05a1 1 0 0 1-1.2 0L1 2m18 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1m18 0v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2"/>
+                            </svg>
+                        </a>
+                        <div class="flex flex-col">
+                            <p class="text-xl text-yellow-300 font-bold">Gmail</p>
+                            <p class="text-white text-sm">mariefrance.carre68@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-3 m-4 px-4">
+                        <a href="https://wa.me/33631740027" class="text-white bg-white from-blue-500 via-blue-600 to-blue-700 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-500 font-medium rounded-full text-sm px-3 py-2.5 text-center me-2 mb-2 btn-animation">
+                            <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                <path stroke="#FDE047" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16.344 12.168-1.4-1.4a1.981 1.981 0 0 0-2.8 0l-.7.7a1.98 1.98 0 0 1-2.8 0l-2.1-2.1a1.98 1.98 0 0 1 0-2.8l.7-.7a1.981 1.981 0 0 0 0-2.8l-1.4-1.4a1.828 1.828 0 0 0-2.8 0C-.638 5.323 1.1 9.542 4.78 13.22c3.68 3.678 7.9 5.418 11.564 1.752a1.828 1.828 0 0 0 0-2.804Z"/>
+                            </svg>
+                        </a>
+                        <div class="flex flex-col">
+                            <p class="text-xl text-yellow-300 font-bold">Téléphone</p>
+                            <p class="text-white text-sm">(33)6 31 74 00 27</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="w-full border border-yellow-300 max-w-4xl max-h-screen-3xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                    <form method="post" id="form-contact">
+                        <p class="text-yellow-300 font-bold text-2xl">Laissez-nous un message</p>
+                        <div class="h-6 lg:h-14"></div>
+                        <!-- Message de succès -->
+                        <div id="toast-success" class="hidden items-center w-full p-4 mb-4 text-white font-bold bg-green-600 rounded-lg shadow-xl" role="alert">
+                            <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                </svg>
+                                <span class="sr-only">Check icon</span>
+                            </div>
+                            <div class="ms-3 text-sm font-normal">Item moved successfully.</div>
+                            <!-- <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
+                                <span class="sr-only">Close</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                            </button> -->
+                        </div>
+                    
+                        <!-- Message d'eereur -->
+                        <div id="toast-danger" class="hidden items-center w-full p-4 mb-4 text-white font-bold bg-red-600 rounded-lg shadow-xl" role="alert">
+                            <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                                <svg class="w-3 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+                                </svg>
+                                <span class="sr-only">Error icon</span>
+                            </div>
+                            <div class="ms-3 text-sm font-normal">Item has been deleted.</div>
+                            <!-- <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger" aria-label="Close">
+                                <span class="sr-only">Close</span>
+                                <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                            </button> -->
+                        </div>
+                        
+                        <div class="mt-4">
+                          <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <input type="text" name="nom" class="bg-gray-50 border border-yellow-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-300 dark:focus:border-yellow-300" placeholder="Nom"/>
+                                <div class="error-message text-red-500 text-sm mt-1"></div>
+                            </div>  
+                            
+                            <div>
+                              <input type="email" name="email" class="bg-gray-50 border border-yellow-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-300 dark:focus:border-yellow-300" placeholder="Email"/>
+                              <div class="error-message text-red-500 text-sm mt-1"></div>
+                            </div>  
+                          </div>
+                          <div>
+                            <input type="text" name="sujet" class="bg-gray-50 border border-yellow-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 focus:border-yellow-300  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-300 dark:focus:border-yellow-300 block w-full p-4" placeholder="Sujet" />
+                            <div class="error-message text-red-500 text-sm mt-1"></div>
+                          </div>
+                          <div class="h-6 lg:h-14"></div>
+                          <div>
+                            <textarea name="message" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-yellow-300 focus:ring-yellow-300 focus:border-yellow-300 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-300 dark:focus:border-yellow-300" placeholder="Message"></textarea>
+                            <div class="error-message text-red-500 text-sm mt-1"></div>
+                          </div>
+                        </div>
+                        <div class="flex items-start justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button type="submit" name="send" class="btn text-white bg-yellow-300 hover:bg-yellow-300 focus:ring-2 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-3 text-center dark:bg-yellow-300 dark:hover:bg-yellow-300 dark:focus:ring-yellow-300">
+                              <span id="save-text">Envoyez Message</span>
+                              <svg id="loading-spinner" style="display: none;" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <style>
+                                  .spinner_Pcrv{transform-origin:center;animation:spinner_xeMo .6s linear infinite}@keyframes spinner_xeMo{100%{transform:rotate(360deg)}}
+                                </style>
+                                <path class="spinner_Pcrv" d="M2,12A10.94,10.94,0,0,1,5,4.65c-.21-.19-.42-.36-.62-.55h0A11,11,0,0,0,12,23c.34,0,.67,0,1-.05C6,23,2,17.74,2,12Z"/>
+                              </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <div class="h-14 lg:h-14"></div>
+    
+    <footer class="bg-gray-800">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <a href="{% url 'index' %}" class="flex items-center">
+                        <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Liens Utiles</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#presentation" class="hover:underline">Présentation</a>
+                            </li>
+                            <li>
+                                <a href="#objectifs" class="hover:underline">Objectifs</a>
+                            </li>
+                            <li class="mt-4">
+                                <a href="#temoignages" class="hover:underline">Témoignages</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Aide & conditions
+                        </h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="{% url 'contact' %}" class="hover:underline ">Contact</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline">Termes & Conditions</a>
+                            </li>
+                            <li class="mt-4">
+                                <a href="#" class="hover:underline">Termes & Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Nous joindre au :
+                        </h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li>
+                                <a href="mailto:mariefrance.carre68@gmail.com" class="hover:underline">mariefrance.carre68@gmail.com</a>
+                            </li>
+                            <li class="mt-4 border border-gray-500 rounded-full w-7 h-7 flex items-center justify-center">
+                                <a href="https://www.facebook.com/share/v/1CdUb5N3JF/"
+                                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor" viewBox="0 0 8 19">
+                                        <path fill-rule="evenodd"
+                                            d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text- font-bold text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a
+                        href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                        <img class="h-12 w-30" src="{% static 'images/footer/pt5.png' %}" alt="image description">
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                        <img class="h-12 w-30" src="{% static 'images/footer/pt3.png' %}" alt="image description">
+                    </a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        const form_contact = document.forms['form-contact'];
+        const successToast = document.getElementById('toast-success');
+        const errorToast = document.getElementById('toast-danger');
+    
+        form_contact.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form_contact.send.disabled = true;
+            form_contact.querySelector('#loading-spinner').style.display = 'block';
+            form_contact.querySelector('#save-text').style.display = 'none';
+            const formData = new FormData(form_contact);
+    
+            fetch("{% url 'contact' %}", {
+                method: 'POST',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                body: formData
+            }).then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                if (data.success) {
+                    successToast.querySelector('.text-sm').textContent = data.message;
+                    successToast.style.display = 'flex';  // Show success toast
+                    setTimeout(() => successToast.style.display = 'none', 10000);  // Hide after 3 seconds
+                    form_contact.reset();
+                } else {
+                    errorToast.querySelector('.text-sm').textContent = data.error_message;
+                    errorToast.style.display = 'flex';  // Show error toast
+                    setTimeout(() => errorToast.style.display = 'none', 10000);  // Hide after 3 seconds
+                }
+            }).catch((error) => {
+                console.error(error);
+            }).finally(() => {
+                form_contact.send.disabled = false;
+                form_contact.querySelector('#loading-spinner').style.display = 'none';
+                form_contact.querySelector('#save-text').style.display = 'block';
+            });
+        });
+    </script>
+
+
+
+{% endblock content %}

@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section>
+    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start rtl:justify-end">
+                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
+                        aria-controls="logo-sidebar" type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                        <span class="sr-only">Open sidebar</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                            </path>
+                        </svg>
+                    </button>
+                    <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                        <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3"
+                            alt="Albino 7 Logo" />
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex items-center ms-3">
+                        <div>
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                <span class="sr-only">Open user menu</span>
+                                {% if user %}
+                                <img class="w-10 h-10 object-cover rounded-full" src="{{ user.imgadmin_url }}" alt="user photo">
+                            </button>
+                        </div>
+                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600"
+                            id="dropdown-user">
+                            <div class="px-4 py-3" role="none">
+                                <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                    {{ user.nom }} {{ user.prenom }}
+                                </p>
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                    {{ user.email }}
+                                </p>
+                            </div>
+                            <ul class="py-1" role="none">
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">
+                                        Déconnexion
+                                    </a>
+                                </li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside id="logo-sidebar"
+        class="mt-8 fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="{% url 'accueil' %}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9" />
+                        </svg>
+                        <span class="ms-3">Accueil</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'pub_mission' %}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 12H12M16 12H12M12 12V8M12 12V16" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Faire une publication</span>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="{% url 'pub_annonce_FB' %}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 12H12M16 12H12M12 12V8M12 12V16" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Publier une annonce FB</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'liste_avis' %}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M21 12C19.1114 14.991 15.7183 18 12 18C8.2817 18 4.88856 14.991 3 12C5.29855 9.15825 7.99163 6 12 6C16.0084 6 18.7015 9.1582 21 12Z"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Liste des avis des visiteurs </span>
+                    </a>
+                </li> -->
+                <li>
+                    <a href="{% url 'deconnexion' %}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div class="h-14 lg:h-14"></div>
+
+    <div class="p-4 sm:ml-64">
+        <div class="p-8 border border-gray-100 shadow-md rounded-lg mt-14">
+            <h1 class="text-2xl font-bold text-gray-900">Ajouter un administrateur</h1>
+            <div class="h-10 lg:h-10"></div>
+            <form method="post" id="form-admin">
+                {% csrf_token %}
+                <!-- Message de succès -->
+                <div id="toast-success" class="hidden items-center w-full p-4 mb-4 text-white font-bold bg-green-600 rounded-lg shadow-xl" role="alert">
+                    <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                        </svg>
+                        <span class="sr-only">Check icon</span>
+                    </div>
+                    <div class="ms-3 text-sm font-normal">Item moved successfully.</div>
+                    <!-- <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                    </button> -->
+                </div>
+
+                <!-- Message d'eereur -->
+                <div id="toast-danger" class="hidden items-center w-full p-4 mb-4 text-white font-bold bg-red-600 rounded-lg shadow-xl" role="alert">
+                    <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                        <svg class="w-3 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+                        </svg>
+                        <span class="sr-only">Error icon</span>
+                    </div>
+                    <div class="ms-3 text-sm font-normal">Item has been deleted.</div>
+                    <!-- <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-danger" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                    </button> -->
+                </div>
+                
+                
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 ">Nom</label>
+                        <input name="nom" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nom"/>
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 ">Prénom</label>
+                        <input name="prenom" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Prénom"/>
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Email
+                        </label>
+                        <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email"/>
+                    </div>
+                   
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Image</label>
+                        <input name="img" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        <div class="mt-1 text-sm text-gray-500" id="user_avatar_help">Importez une image de profile</div>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">
+                            Mot de passe
+                        </label>
+                        <input type="password" name="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">
+                            Confirmez
+                        </label>
+                        <input type="password" name="c_password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                    </div>
+                </div>
+                <div class="h-5 lg:h-5"></div>
+                <button type="submit" name="send" class="text-white bg-blue-700 cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <span id="save-text">Enregistrer</span>
+                    <svg width="24" height="24" stroke="#FFFFFF" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="loading-spinner" style="display: none;">
+                        <style>
+                            .spinner_V8m1 {
+                                transform-origin: center;
+                                animation: spinner_zKoa 2s linear infinite
+                            }
+                    
+                            .spinner_V8m1 circle {
+                                stroke-linecap: round;
+                                animation: spinner_YpZS 1.5s ease-in-out infinite
+                            }
+                    
+                            @keyframes spinner_zKoa {
+                                100% {
+                                    transform: rotate(360deg)
+                                }
+                            }
+                    
+                            @keyframes spinner_YpZS {
+                                0% {
+                                    stroke-dasharray: 0 150;
+                                    stroke-dashoffset: 0
+                                }
+                    
+                                47.5% {
+                                    stroke-dasharray: 42 150;
+                                    stroke-dashoffset: -16
+                                }
+                    
+                                95%,
+                                100% {
+                                    stroke-dasharray: 42 150;
+                                    stroke-dashoffset: -59
+                                }
+                            }
+                        </style>
+                        <g class="spinner_V8m1">
+                            <circle cx="12" cy="12" r="9.5" fill="none" stroke-width="3"></circle>
+                        </g>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    const formadd_admin = document.forms['form-admin'];
+    const successToast = document.getElementById('toast-success');
+    const errorToast = document.getElementById('toast-danger');
+
+    formadd_admin.addEventListener('submit', (event) => {
+        event.preventDefault();
+        formadd_admin.send.disabled = true;
+        formadd_admin.querySelector('#loading-spinner').style.display = 'block';
+        formadd_admin.querySelector('#save-text').style.display = 'none';
+        const formData = new FormData(formadd_admin);
+
+        fetch("{% url 'ajouter_admin' %}", {
+            method: 'POST',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            body: formData
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            if (data.success) {
+                successToast.querySelector('.text-sm').textContent = data.message;
+                successToast.style.display = 'flex';  // Show success toast
+                setTimeout(() => successToast.style.display = 'none', 10000);  // Hide after 3 seconds
+                formadd_admin.reset();
+            } else {
+                errorToast.querySelector('.text-sm').textContent = data.error_message;
+                errorToast.style.display = 'flex';  // Show error toast
+                setTimeout(() => errorToast.style.display = 'none', 10000);  // Hide after 3 seconds
+            }
+        }).catch((error) => {
+            console.error(error);
+        }).finally(() => {
+            formadd_admin.send.disabled = false;
+            formadd_admin.querySelector('#loading-spinner').style.display = 'none';
+            formadd_admin.querySelector('#save-text').style.display = 'block';
+        });
+    });
+</script>
+
+{% endblock content %}

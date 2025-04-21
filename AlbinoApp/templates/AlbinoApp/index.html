@@ -1,0 +1,690 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <section>
+        <nav class="bg-white dark:bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="{% url 'index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
+                    <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Albino 7</span> -->
+                </a>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <!-- data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" -->
+                    {% comment %} <a href="https://www.facebook.com/share/v/1CdUb5N3JF/"
+                        class="text-gray-500 border border-white rounded-full w-8 h-8 ring-2 ring-gray-300 dark:ring-gray-600  flex items-center justify-center hover:text-yellow-300">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white"
+                            viewBox="0 0 8 19">
+                            <path fill-rule="evenodd"
+                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a> {% endcomment %}
+                    <a href="{% url 'login' %}" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+                        Esapce personnel
+                    </a>
+                    
+                    <button id="menu-toggle" data-collapse-toggle="navbar-sticky" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-sticky" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul
+                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                            <a href="#" onclick="location.reload()"
+                                class="nav-link block py-2 px-3 text-yellow-300 bg-gray-900 rounded-sm md:bg-transparent md:p-0 active"
+                                aria-current="page">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="#presentation"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Présentation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#objectifs"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Objectifs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#temoignages"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Témoignages
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#missions"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Missions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#blogs"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#actualites"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Annonces
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}"
+                                class="nav-link block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent hover:text-yellow-500 md:p-0 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <div class="h-24 lg:h-24"></div>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
+            <div class="flex flex-col justify-center">
+                <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                    Bienvenue sur la plateforme ALBINO7
+                </h1>
+                <p class="mb-8 text-sm font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+                    ALBINO7 s'engage pour la formation de citoyens responsables, la lutte contre la
+                    discrimination sociale faites aux personnes atteintes d'albinisme, ainsi que pour l'inclusion.
+                </p>
+                <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
+                    <a href="{% url 'actualite' %}" onclick="location.reload()"
+                        class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg bg-yellow-300 hover:bg-yellow-300 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-300">
+                        <span class="font-bold">Suivre nos annonces</span>
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <video class="w-full max-w-full rounded-lg shadow-xl" controls>
+                    <source src="{% static 'videos/details.mp4' %}" type="video/mp4">
+                    Votre navigateur ne supporte pas la balise vidéo.
+                </video>
+            </div>
+
+        </div>
+    </section>
+    <div class="h-8 lg:h-8"></div>
+    <section id="presentation" class="bg-white dark:bg-gray-900">
+        <h2 class="font-bold text-yellow-300 text-3xl text-center">Présentation</h2>
+        <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+        <p class="mt-4 text-xl m-4 text-white font-bold text-center">
+            Une brève présentation de ce que nous faisons.
+        </p>
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-16 items-center">
+            <div class="flex justify-center image-container fade-in-left">
+                <div id="gallery" class="relative w-full" data-carousel="slide">
+                    <!-- Carousel wrapper -->
+                    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                        <!-- Item 1 -->
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="{% static 'images/presentations/albini8.jpg' %}"
+                                class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="">
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{% static 'images/presentations/albini6.jpg' %}"
+                                class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="">
+                        </div>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{% static 'images/presentations/albini4.jpg' %}"
+                                class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="">
+                        </div>
+                    </div>
+                    <!-- Slider controls -->
+                    <button type="button"
+                        class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                        data-carousel-prev>
+                        <span
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M5 1 1 5l4 4" />
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button"
+                        class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                        data-carousel-next>
+                        <span
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </button>
+                </div>
+                <!-- <img class="w-full max-w-xl rounded-lg shadow-xl dark:shadow-gray-800 image" src="./images/albini8.jpg" alt="image description"> -->
+            </div>
+            <div class="flex flex-col justify-center text-center md:text-left fade-in-up">
+                <h1 class="mb-4 text-3xl text-left font-extrabold tracking-tight leading-none text-gray-900 dark:text-white">
+                    Et si on parlait de ALBINO7 ?
+                </h1>
+                <p class="mb-4 text-left text-md font-normal text-gray-500 md:text-md dark:text-gray-400">
+                    Le soleil, symbolisé par un jaune éclatant, est à la
+                    fois une source de chaleur et un danger pour la peau et les
+                    yeux, nécessitant une protection comme des lunettes noires. Le
+                    cercle du soleil est entouré de flammes orangées, illustrant les risques
+                    accrus liés au réchauffement climatique. Le terme "Albino 7" désigne les personnes
+                    atteintes d'albinisme et est compris à la fois en français et en anglais. ALBINO7 œuvre 
+                    pour la formation de citoyens responsables, tandis qu'un jeu de 7 familles,
+                    créé par Marie France, sensibilise de manière ludique aux réalités de l'albinisme.
+                </p>
+                <div class="text-left flex-col space-y-4 sm:flex-row sm:space-y-0 sm:justify-center md:justify-start">
+                    <a href="{% url 'lire_plus' %}"
+                        class="inline-flex justify-center items-center py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        Lire plus
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-10 lg:h-10"></div>
+
+    <section id="objectifs">
+        <h2 class="font-bold text-yellow-300 text-3xl text-center">Objectifs</h2>
+        <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+        <p class="mt-4 text-xl m-4 text-white font-bold text-center">
+            Objectifs à atteindre
+        </p>
+        <div class="h-8 lg:h-8"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-7xl mx-auto">
+            <!-- Carte 1 -->
+            <div class="bg-gray-800 m-4 border border-gray-800 h-20 flex items-center justify-center shadow-md fade-in-card">
+                <p class="text-left text-sm m-4 text-white font-bold">
+                    Participer à la mise en place d’un Centre National
+                    d’Intégration de la Personne Albinos (C.N.I.P.A.).
+                </p>
+            </div>
+            <!-- Carte 2 -->
+            <div class="bg-gray-800 m-4 border border-gray-800 h-20 flex items-center justify-center shadow-md fade-in-card">
+                <p class="text-left text-sm m-4 text-white font-bold">
+                    Diffuser et expliquer à tous, surtout aux scolaires, 
+                    ce qu'est l'albinisme, ses causes et ses conséquences sur 
+                    la santé et la vie des personnes atteintes.
+                </p>
+                
+            </div>
+        </div>
+        <div class="mt-4">
+            <h2 class="font-bold text-yellow-300 text-3xl text-center">Illustrations</h2>
+            <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+            <p class="mt-4 text-xl text-white font-bold text-center">
+                Quelques images pour illustrer mes objectifs.
+            </p>
+            <div class="h-8 lg:h-8"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-7xl mx-auto">
+                <!-- Image 1 -->
+                <div class="m-4 flex items-center justify-center fade-in-left image-container">
+                    <img style="height: 100%;"
+                        class="w-full object-cover h-auto max-w-full rounded-lg shadow-xl dark:shadow-gray-800 image"
+                        src="{% static 'images/illustration/il1.png' %}" alt="image description">
+                </div>
+                <!-- Image 2 -->
+                <div class="m-4 flex items-center justify-center fade-in-left image-container">
+                    <img style="height: 100%;"
+                        class="w-full h-24 max-w-full object-cover rounded-lg shadow-xl dark:shadow-gray-800 image"
+                        src="{% static 'images/illustration/il2.png' %}" alt="image description">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-8 lg:h-8"></div>
+    <section id="temoignages">
+        <h2 class="font-bold text-yellow-300 text-3xl text-center">Témoignages</h2>
+        <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+        <p class="mt-4 m-4 text-xl text-white font-bold text-center">
+            Des personnes ont témoignées.
+        </p>
+        <div class="h-8 lg:h-8"></div>
+        <div id="albino7-carousel" class="sticky max-w-7xl mx-auto" data-carousel="slide">
+            <!-- Carousel wrapper -->
+            <div class="sticky h-56 overflow-hidden rounded-lg md:h-96 bg-gray-900 flex items-center justify-center">
+                <!-- Témoignage 1 -->
+                <div class="hidden duration-700 ease-in-out p-6 text-center text-gray-800" data-carousel-item>
+                    <div class="flex flex-col items-center justify-center">
+                        <svg class="w-8 h-8 text-yellow-300 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 18 14">
+                            <path
+                                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                        </svg>
+
+                    </div>
+                    <p class="text-sm italic text-white">"Albino7 a transformé ma façon de travailler. La performance
+                        est incroyable et l'interface utilisateur est super fluide !"</p>
+                    <span class="block mt-2 font-semibold text-white">- Isabelle Durand</span>
+                </div>
+                <!-- Témoignage 2 -->
+                <div class="hidden duration-700 ease-in-out p-6 text-center text-gray-800" data-carousel-item>
+                    <div class="flex items-center justify-center">
+                        <svg class="w-8 h-8 text-yellow-300 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 18 14">
+                            <path
+                                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                        </svg>
+                    </div>
+                    <p class="text-sm italic text-white">"Un produit qui répond parfaitement à mes attentes. L'Albino 7
+                        a vraiment facilité ma gestion quotidienne!"</p>
+                    <span class="block mt-2 font-semibold text-white">- Jacques Lefevre</span>
+                </div>
+                <!-- Témoignage 3 -->
+                <div class="hidden duration-700 ease-in-out p-6 text-center text-gray-800" data-carousel-item>
+                    <div class="flex items-center justify-center">
+                        <svg class="w-8 h-8 text-yellow-300 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 18 14">
+                            <path
+                                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                        </svg>
+                    </div>
+                    <p class="text-sm italic text-white">"Avec l'Albino 7, j'ai enfin trouvé un outil adapté à mes
+                        besoins. Une vraie révolution dans ma productivité!"</p>
+                    <span class="block mt-2 font-semibold text-white">- Thomas Boucher</span>
+                </div>
+                <!-- Témoignage 4 -->
+                <div class="hidden duration-700 ease-in-out p-6 text-center text-gray-800" data-carousel-item>
+                    <div class="flex items-center justify-center">
+                        <svg class="w-8 h-8 text-yellow-300 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 18 14">
+                            <path
+                                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                        </svg>
+                    </div>
+                    <p class="text-sm italic text-white">"Excellente expérience d'utilisation, l'Albino 7 est rapide,
+                        efficace et vraiment intuitif!"</p>
+                    <span class="block mt-2 font-semibold text-white">- Nathalie Girard</span>
+                </div>
+            </div>
+            <div class="h-14 lg:h-14"></div>
+
+            <!-- Slider controls -->
+            <button type="button"
+                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-prev>
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-300 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-white rtl:rotate-180" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 1 1 5l4 4" />
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button"
+                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-next>
+                <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-300 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-white rtl:rotate-180" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1l4 4-4 4" />
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
+        </div>
+    </section>
+    <div class="h-8 lg:h-8"></div>
+    <section id="missions">
+        <div class="mt-4">
+            <h2 class="font-bold text-yellow-300 text-3xl text-center">Missions</h2>
+            <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+            <p class="mt-4 text-xl text-white font-bold text-center">
+                Découvrez ici quelques unes de nos différentes missions.
+            </p>
+            <div class="h-14 lg:h-14"></div>
+            <div id="accordion-collapse" class="max-w-7xl mx-auto" data-accordion="collapse">
+                <h2 id="accordion-collapse-heading-1" class="m-4">
+                    <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-collapse-body-1" aria-expanded="false"
+                        aria-controls="accordion-collapse-body-1">
+                        <span>Interventions scolaires Avec 2 objectifs complémentaires </span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5 5 1 1 5" />
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-body-1" class="hidden m-4" aria-labelledby="accordion-collapse-heading-1">
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                        <p class="mb-2 text-gray-500 text-left dark:text-gray-400">
+                            Diffuser les actions l’ONG VALEUR
+                            ALBINOS et proposer une levée de fonds. Fait, pour 2 années consécutives, le jour du début
+                            des vacances scolaires, lors d’une matinée de Noël solidaire » le 20/12/2024 (voir photos :
+                            sur
+                            l’un des écrans, projection du téléfilm Luna + diaporama). Une classe de 2nde s’est
+                            mobilisée
+                            pour une collecte de cartouches d’imprimantes vides Hp et Canon, que je trie et que j’envoie
+                            à une société de recyclage et qui me rétribue pour cela. Une belle collecte ayant rapporté
+                            140
+                            euros que Firmin a pu ensuite recevoir. La collecte continue. (L’année précédente avec une
+                            autre classe, diffusion seulement). En projet, reconduction pour Noël 25, collecte de
+                            cartouches à cibler pour financer des loupes ?
+                        </p>
+                    </div>
+                </div>
+                <h2 id="accordion-collapse-heading-2" class="m-4">
+                    <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
+                        aria-controls="accordion-collapse-body-2">
+                        <span>« Albinisme ? Amélanisme ? »</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5 5 1 1 5" />
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-body-2" class="hidden m-4" aria-labelledby="accordion-collapse-heading-2">
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">
+                            Diffusion du jeu « Albinisme ? Amélanisme ? auprès d’associations africaines touchées par
+                            l’albinisme et dont certaines suivre mes publications FB : Côte d’Ivoire, Madagascar, 2
+                            associations de jeunes béninois
+                        </p>
+                    </div>
+                </div>
+                <h2 id="accordion-collapse-heading-3" class="m-4">
+                    <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-collapse-body-3" aria-expanded="false"
+                        aria-controls="accordion-collapse-body-3">
+                        <span>Publications FB (Facebook)</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5 5 1 1 5" />
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-collapse-body-3" class="hidden m-4" aria-labelledby="accordion-collapse-heading-3">
+                    <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">
+                            1-) 1 par semaine sauf pendant les vacances scolaires en France (en principe)
+                            • Données biologiques explicatives (anatomie de l’œil, gènes et mutations, transmission
+                            d’une maladie génétique…)
+                        </p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">
+                            2-) En relation avec des évènements : C.I.D.E.(20 novembre) ; Journée internationale des
+                            maladies rares (28 février) ; Journée internationale de sensibilisation à l’albinisme (13
+                            juin)
+                        </p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">
+                            3-) En fonction de l’actualité : rentrée scolaire, pétition pour que l’OMS inscrive les
+                            crèmes
+                            comme un médicament.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="h-14 lg:h-14"></div>
+
+            <div id="blogs">
+                <h2 class="font-bold text-yellow-300 text-3xl text-center">Blog</h2>
+                <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+                <p class="mt-4 m-4 text-xl text-white font-bold text-center">
+                    Des exemples d'articles descriptifs ont été proposés pour plus d'explicationss.
+                </p>
+                <div class="h-10 lg:h-10"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto px-4">
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F1C1.png' %}" alt="">
+                    </div>
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F2C3.png' %}" alt="">
+                    </div>
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F3C3.png' %}" alt="">
+                    </div>
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F4C1.png' %}" alt="">
+                    </div>
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F5C1.png' %}" alt="">
+                    </div>
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F6C3.png' %}" alt="">
+                    </div>
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F7C1.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+    </section>
+    <div class="h-8 lg:h-8"></div>
+    <section id="actualites" class="py-10 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-bold text-yellow-300 text-3xl text-center">Annonces</h2>
+            <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
+            <p class="mt-4 text-xl text-white font-bold text-center">
+                Suivez avec nous désormais nos annonces.
+            </p>
+            {% if missions %}
+                <div class="h-10 lg:h-10"></div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    {% for mission in missions %}
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg fade-in-left image-container">
+                        <!-- Image cliquable -->
+                        <img 
+                            src="{{ mission.imgmission_url }}" 
+                            alt="Image article" 
+                            class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105" 
+                            onclick="openModal('{{ mission.imgmission_url }}')"
+                        />
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
+                            
+                            <!-- Description tronquée -->
+                            <p class="text-gray-400 text-sm">
+                                <span class="short-text">
+                                    {{ mission.description|truncatewords:20 }}...
+                                </span>
+                                <span class="full-text hidden">
+                                    {{ mission.description }}
+                                </span>
+                            </p>
+                
+                            <p class="text-gray-500 text-xs mt-2">Publié il y a {{ mission.date|timesince }}.</p>
+                            
+                            <!-- Bouton Lire plus -->
+                            <button class="text-yellow-400 hover:underline read-more-btn">Lire plus</button>
+                            <!-- Bouton Voir la publicité -->
+                            <a href="{{ mission.lien }}" target="_blank" class="block mt-3 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-semibold hover:bg-yellow-500 transition">
+                                Voir l'annonce
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                    
+            {% else %}
+            <div class="h-10 lg:h-10"></div>
+            <p class="text-gray-500 text-xl flex items-center justify-center">Aucune mise à jour récente pour le moment.</p>
+            {% endif %}
+        </div>
+        <div class="h-8 lg:h-8"></div>
+        <div class="flex items-center justify-center">
+            <a href="{% url 'actualite' %}" class="text-yellow-300 hover:text-white border border-yellow-300 hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm w-80 py-2.5 text-center inline-block me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-300 dark:focus:ring-yellow-900">
+                Explorez plus nos annonces
+            </a>            
+        </div>
+    </section>
+    <div class="h-8 lg:h-8"></div>
+    <footer class="bg-gray-800">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <a href="index.html" class="flex items-center">
+                        <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3"
+                            alt="Albino 7 Logo" />
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Liens Utiles</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#presentation" class="hover:underline">Présentation</a>
+                            </li>
+                            <li>
+                                <a href="#objectifs" class="hover:underline">Objectifs</a>
+                            </li>
+                            <li class="mt-4">
+                                <a href="#temoignages" class="hover:underline">Témoignages</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Aide & conditions
+                        </h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="{% url 'contact' %}" class="hover:underline ">Contact</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline">Termes & Conditions</a>
+                            </li>
+                            <li class="mt-4">
+                                <a href="#" class="hover:underline">Termes & Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Nous joindre au :
+                        </h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li>
+                                <a href="mailto:mariefrance.carre68@gmail.com" class="hover:underline">mariefrance.carre68@gmail.com</a>
+                            </li>
+                            <li
+                                class="mt-4 border border-gray-500 rounded-full w-7 h-7 flex items-center justify-center">
+                                <a href="https://www.facebook.com/share/v/1CdUb5N3JF/"
+                                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor" viewBox="0 0 8 19">
+                                        <path fill-rule="evenodd"
+                                            d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text- font-bold text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                        <img class="h-12 w-30" src="{% static 'images/footer/pt5.png' %}" alt="image description">
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                        <img class="h-12 w-30" src="{% static 'images/footer/pt3.png' %}" alt="image description">
+                    </a>
+                </div>
+            </div>
+    </footer>
+    <section>
+        <button id="scrollToTopBtn"
+            class="fixed bottom-5 right-5 p-3 bg-yellow-300 text-white rounded shadow-lg hover:bg-orange-500 cursor-pointer focus:outline-none">
+            ↑
+        </button>
+    </section>
+    <section>
+        <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300">
+            <div class="relative max-w-4xl w-full p-4">
+                <!-- Bouton de fermeture -->
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-4xl hover:text-yellow-400 transition">
+                    &times;
+                </button>
+        
+                <!-- Image affichée -->
+                <img id="modalImage" src="" alt="Zoom image" class="rounded-lg w-full max-h-[80vh] object-contain shadow-2xl" />
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const parent = this.previousElementSibling.previousElementSibling;
+                const shortText = parent.querySelector('.short-text');
+                const fullText = parent.querySelector('.full-text');
+
+                if (fullText.classList.contains('hidden')) {
+                    shortText.classList.add('hidden');
+                    fullText.classList.remove('hidden');
+                    this.textContent = "Lire moins";
+                } else {
+                    shortText.classList.remove('hidden');
+                    fullText.classList.add('hidden');
+                    this.textContent = "Lire plus";
+                }
+            });
+        });
+
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const image = document.getElementById('modalImage');
+            image.src = imageSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.getElementById('modalImage').src = '';
+        }
+    </script>
+
+{% endblock content %}
