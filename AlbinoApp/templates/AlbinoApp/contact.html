@@ -9,14 +9,14 @@
 
     <section>
         <nav
-            class="bg-white dark:bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
+            class="bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="{% url 'index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
                     <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Albino 7</span> -->
                 </a>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <a href="{% url 'login' %}" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+                    <a href="{% url 'login' %}" class="text-white hover:text-white border border-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2">
                         Esapce personnel
                     </a>
                     <!-- <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" type="button"
@@ -60,7 +60,7 @@
           <hr class="section-divider w-24 h-1 mx-auto my-8 bg-yellow-300 border-0 rounded">
         </div>
         <div class="py-8 px-3 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-4 lg:gap-8">
-            <div class="bg-white shadow-lg min-h-screen border border-yellow-300 dark:bg-gray-800">
+            <div class="shadow-lg min-h-screen border border-yellow-300 rounded-lg bg-gray-800">
                 <div class="flex items-center justify-center m-4 px-4">
                     <div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px]">
                         <!-- <iframe class="absolute top-0 left-0 w-full h-full border-0"
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div>
-                <div class="w-full border border-yellow-300 max-w-4xl max-h-screen-3xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <div class="w-full border border-yellow-300 max-w-4xl max-h-screen-3xl p-6 space-y-8 sm:p-8 rounded-lg shadow-lg bg-gray-800">
                     <form method="post" id="form-contact">
                         <p class="text-yellow-300 font-bold text-2xl">Laissez-nous un message</p>
                         <div class="h-6 lg:h-14"></div>
@@ -180,77 +180,10 @@
     
     <footer class="bg-gray-800">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-            <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0">
-                    <a href="{% url 'index' %}" class="flex items-center">
-                        <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
-                    </a>
-                </div>
-                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Liens Utiles</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="#presentation" class="hover:underline">Présentation</a>
-                            </li>
-                            <li>
-                                <a href="#objectifs" class="hover:underline">Objectifs</a>
-                            </li>
-                            <li class="mt-4">
-                                <a href="#temoignages" class="hover:underline">Témoignages</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Aide & conditions
-                        </h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="{% url 'contact' %}" class="hover:underline ">Contact</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:underline">Termes & Conditions</a>
-                            </li>
-                            <li class="mt-4">
-                                <a href="#" class="hover:underline">Termes & Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Nous joindre au :
-                        </h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li>
-                                <a href="mailto:mariefrance.carre68@gmail.com" class="hover:underline">mariefrance.carre68@gmail.com</a>
-                            </li>
-                            <li class="mt-4 border border-gray-500 rounded-full w-7 h-7 flex items-center justify-center">
-                                <a href="https://www.facebook.com/share/v/1CdUb5N3JF/"
-                                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor" viewBox="0 0 8 19">
-                                        <path fill-rule="evenodd"
-                                            d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text- font-bold text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a
-                        href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
+            <div class="flex items-center justify-center">
+                <span class="text- font-bold text-white sm:text-center">© 2025 <a
+                    href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
                 </span>
-                <div class="flex mt-4 sm:justify-center sm:mt-0">
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                        <img class="h-12 w-30" src="{% static 'images/footer/pt5.png' %}" alt="image description">
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                        <img class="h-12 w-30" src="{% static 'images/footer/pt3.png' %}" alt="image description">
-                    </a>
-                </div>
             </div>
     </footer>
 

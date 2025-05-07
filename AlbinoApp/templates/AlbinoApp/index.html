@@ -5,11 +5,31 @@
 {% block content %}
 
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        #splash {
+            transition: opacity 0.5s ease;
+        }
+    </style>
+    <div id="splash" class="splash-screen fixed inset-0 bg-gray-900 flex justify-center items-center z-50">
+        <div class="text-center">
+          <!-- Nouveau SVG minimaliste et élégant -->
+          <svg class="w-20 h-20 animate-spin text-yellow-300 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100">
+            <circle class="opacity-30" cx="50" cy="50" r="40" stroke="currentColor" stroke-width="10" />
+            <path class="opacity-90" fill="currentColor" d="M90 50a40 40 0 1 1-40-40v10a30 30 0 1 0 30 30h10z" />
+          </svg>
+      
+          <!-- Texte stylisé -->
+          <p class="text-white text-xl font-semibold mt-4 tracking-wide">
+            Chargement... <span class="text-yellow-300">Albino7</span>
+          </p>
+        </div>
+    </div>
+      
 
     <section>
-        <nav class="bg-white dark:bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
+        <nav class="bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="{% url 'index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
@@ -26,12 +46,12 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </a> {% endcomment %}
-                    <a href="{% url 'login' %}" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+                    <a href="{% url 'login' %}" class="text-white hover:text-white border border-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2">
                         Esapce personnel
                     </a>
                     
                     <button id="menu-toggle" data-collapse-toggle="navbar-sticky" type="button"
-                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-white"
                         aria-controls="navbar-sticky" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -43,7 +63,7 @@
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul
-                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-800 rounded-lg bg-gray-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-800 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
                             <a href="#" onclick="location.reload()"
                                 class="nav-link block py-2 px-3 text-yellow-300 bg-gray-900 rounded-sm md:bg-transparent md:p-0 active"
@@ -97,13 +117,14 @@
         </nav>
     </section>
     <div class="h-24 lg:h-24"></div>
-    <section class="bg-white dark:bg-gray-900">
+    <section class="dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
             <div class="flex flex-col justify-center">
-                <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                    Bienvenue sur la plateforme ALBINO7
-                </h1>
-                <p class="mb-8 text-sm font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+                <h1 id="typewriter-title" class="mb-4 text-3xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl text-white font-poppins">
+                    <span class="typewriter-text"></span><span class="text-yellow-300">|</span>
+                </h1>                
+
+                <p class="mb-8 text-sm font-normal text-white lg:text-xl">
                     ALBINO7 s'engage pour la formation de citoyens responsables, la lutte contre la
                     discrimination sociale faites aux personnes atteintes d'albinisme, ainsi que pour l'inclusion.
                 </p>
@@ -129,7 +150,7 @@
         </div>
     </section>
     <div class="h-8 lg:h-8"></div>
-    <section id="presentation" class="bg-white dark:bg-gray-900">
+    <section id="presentation" class="dark:bg-gray-900">
         <h2 class="font-bold text-yellow-300 text-3xl text-center">Présentation</h2>
         <hr class="w-48 h-1 mx-auto my-4 bg-yellow-300 border-0 rounded-sm md:my-10">
         <p class="mt-4 text-xl m-4 text-white font-bold text-center">
@@ -189,10 +210,10 @@
                 <!-- <img class="w-full max-w-xl rounded-lg shadow-xl dark:shadow-gray-800 image" src="./images/albini8.jpg" alt="image description"> -->
             </div>
             <div class="flex flex-col justify-center text-center md:text-left fade-in-up">
-                <h1 class="mb-4 text-3xl text-left font-extrabold tracking-tight leading-none text-gray-900 dark:text-white">
+                <h1 class="mb-4 text-3xl text-left font-extrabold tracking-tight leading-none text-white">
                     Et si on parlait de ALBINO7 ?
                 </h1>
-                <p class="mb-4 text-left text-md font-normal text-gray-500 md:text-md dark:text-gray-400">
+                <p class="mb-4 text-left text-md font-normal text-white md:text-md">
                     Le soleil, symbolisé par un jaune éclatant, est à la
                     fois une source de chaleur et un danger pour la peau et les
                     yeux, nécessitant une protection comme des lunettes noires. Le
@@ -228,14 +249,14 @@
         <div class="h-8 lg:h-8"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-7xl mx-auto">
             <!-- Carte 1 -->
-            <div class="bg-gray-800 m-4 border border-gray-800 h-20 flex items-center justify-center shadow-md fade-in-card">
+            <div class="bg-gray-800 m-4 border border-gray-800 h-24 flex items-center justify-center shadow-md fade-in-card">
                 <p class="text-left text-sm m-4 text-white font-bold">
                     Participer à la mise en place d’un Centre National
                     d’Intégration de la Personne Albinos (C.N.I.P.A.).
                 </p>
             </div>
             <!-- Carte 2 -->
-            <div class="bg-gray-800 m-4 border border-gray-800 h-20 flex items-center justify-center shadow-md fade-in-card">
+            <div class="bg-gray-800 m-4 border border-gray-800 h-24 flex items-center justify-center shadow-md fade-in-card">
                 <p class="text-left text-sm m-4 text-white font-bold">
                     Diffuser et expliquer à tous, surtout aux scolaires, 
                     ce qu'est l'albinisme, ses causes et ses conséquences sur 
@@ -471,25 +492,25 @@
                 <div class="h-10 lg:h-10"></div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto px-4">
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F1C1.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F1etC1bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F2C3.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F2etC3bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F3C3.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F3etC3bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F4C1.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F4etC1bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F5C1.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F5etC1bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F6C3.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F6etC1.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F7C1.png' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F7etC1.png' %}" alt="">
                     </div>
                 </div>
             </div>
@@ -543,7 +564,7 @@
                     
             {% else %}
             <div class="h-10 lg:h-10"></div>
-            <p class="text-gray-500 text-xl flex items-center justify-center">Aucune mise à jour récente pour le moment.</p>
+            <p class="text-red-500 text-sm flex items-center justify-center">Aucune annonce récente n'est disponible pour le moment.</p>
             {% endif %}
         </div>
         <div class="h-8 lg:h-8"></div>
@@ -565,8 +586,8 @@
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Liens Utiles</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <h2 class="mb-6 text-sm font-semibold uppercase text-white">Liens Utiles</h2>
+                        <ul class="text-white font-medium">
                             <li class="mb-4">
                                 <a href="#presentation" class="hover:underline">Présentation</a>
                             </li>
@@ -579,9 +600,9 @@
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Aide & conditions
+                        <h2 class="mb-6 text-sm font-semibold uppercase text-white">Aide & conditions
                         </h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <ul class="text-white font-medium">
                             <li class="mb-4">
                                 <a href="{% url 'contact' %}" class="hover:underline ">Contact</a>
                             </li>
@@ -594,16 +615,16 @@
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Nous joindre au :
+                        <h2 class="mb-6 text-sm font-semibolduppercase text-white">Nous joindre au :
                         </h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <ul class="text-white font-medium">
                             <li>
                                 <a href="mailto:mariefrance.carre68@gmail.com" class="hover:underline">mariefrance.carre68@gmail.com</a>
                             </li>
                             <li
                                 class="mt-4 border border-gray-500 rounded-full w-7 h-7 flex items-center justify-center">
                                 <a href="https://www.facebook.com/share/v/1CdUb5N3JF/"
-                                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                    class="text-white hover:text-white">
                                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 8 19">
                                         <path fill-rule="evenodd"
@@ -618,13 +639,13 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text- font-bold text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
+                <span class="text- font-bold text-white sm:text-center">© 2025 <a href="{% url 'index' %}" class="hover:underline">Albino7</a>. Touts droits réservés.
                 </span>
                 <div class="flex mt-4 sm:justify-center sm:mt-0">
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                    <a href="#" class="text-white hover:text-white">
                         <img class="h-12 w-30" src="{% static 'images/footer/pt5.png' %}" alt="image description">
                     </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                    <a href="#" class="text-white hover:text-white ms-5">
                         <img class="h-12 w-30" src="{% static 'images/footer/pt3.png' %}" alt="image description">
                     </a>
                 </div>
@@ -655,18 +676,18 @@
     <script>
         document.querySelectorAll('.read-more-btn').forEach(button => {
             button.addEventListener('click', function () {
-                const parent = this.previousElementSibling.previousElementSibling;
-                const shortText = parent.querySelector('.short-text');
-                const fullText = parent.querySelector('.full-text');
+                const card = button.closest('.p-5'); // On remonte au parent qui contient short-text et full-text
+                const shortText = card.querySelector('.short-text');
+                const fullText = card.querySelector('.full-text');
 
-                if (fullText.classList.contains('hidden')) {
-                    shortText.classList.add('hidden');
-                    fullText.classList.remove('hidden');
-                    this.textContent = "Lire moins";
-                } else {
+                if (shortText.classList.contains('hidden')) {
                     shortText.classList.remove('hidden');
                     fullText.classList.add('hidden');
-                    this.textContent = "Lire plus";
+                    button.textContent = "Lire plus";
+                } else {
+                    shortText.classList.add('hidden');
+                    fullText.classList.remove('hidden');
+                    button.textContent = "Réduire";
                 }
             });
         });
@@ -685,6 +706,56 @@
             modal.classList.add('hidden');
             document.getElementById('modalImage').src = '';
         }
+
+        // Gestion du splash screen avec transition fluide
+        window.addEventListener('load', () => {
+          const splash = document.getElementById('splash');
+          const mainContent = document.getElementById('main-content');
+        
+          setTimeout(() => {
+            splash.classList.add('opacity-0'); // Transition
+            setTimeout(() => {
+              splash.classList.add('hidden');
+              mainContent.classList.remove('hidden');
+            }, 400); // Laisser le temps à la transition d'opacité (0.5s)
+          }, 3000); // Splash visible 3 secondes
+        });
+
+
+        // Typewriter du titre bienvenue sur ALbino7
+        const texts = [
+          "Bienvenue sur",
+          "la plateforme ALBINO7",
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        const speed = 100;
+        const textElement = document.querySelector(".typewriter-text");
+
+        function typeWriter() {
+          if (charIndex < texts[textIndex].length) {
+            textElement.textContent += texts[textIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, speed);
+          } else {
+            setTimeout(eraseText, 2000); // Pause avant suppression
+          }
+        }
+    
+        function eraseText() {
+          if (charIndex > 0) {
+            textElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(eraseText, 50);
+          } else {
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(typeWriter, 500);
+          }
+        }
+    
+        window.onload = typeWriter;
+
     </script>
 
 {% endblock content %}

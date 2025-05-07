@@ -1,3 +1,4 @@
+from django.contrib import messages
 import re
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse # type: ignore
@@ -7,14 +8,15 @@ from django.contrib.auth.hashers import check_password
 from Dashadmin.models import Add_admin, Add_mission, Add_pubfb
 from django.utils.timezone import now, timedelta
 from django.contrib.auth import logout
+from datetime import datetime
 
 # Create your views here.
 
 def index(request): 
     # Calculer la date et l'heure des dernières 24 heures
-    dernieres_24h = now() - timedelta(hours=24) 
+    dernieres_72h = now() - timedelta(hours=72) 
     # Récupérer les missions
-    missions = Add_mission.objects.filter(date__gte=dernieres_24h).order_by('-date')
+    missions = Add_mission.objects.filter(date__gte=dernieres_72h).order_by('-date')
     return render(request, 'AlbinoApp/index.html', {'missions': missions})
 
 def lireplus(request):
@@ -73,40 +75,53 @@ def contact(request):
     return render(request, 'AlbinoApp/contact.html')
 
 def actualite(request):
-    # Calculer les dates de seuil
-    dernieres_24h = now() - timedelta(hours=24)
-    une_semaine = now() - timedelta(weeks=1)
+    # Initialisation des variables pour les missions
+    missions_recentes = []
+    missions_anciennes = []
+    missions_archivees = []
+    date_str = request.GET.get('date')  # Date envoyée dans la requête GET
 
-    # Récupérer les paramètres du formulaire de recherche
-    theme = request.GET.get('theme', '')
-    date_filtre = request.GET.get('date', '')
+    # Calcul des seuils de temps pour les catégories
+    maintenant = datetime.now()
+    dans_72h = maintenant - timedelta(hours=72)
+    dans_96h = maintenant - timedelta(hours=96)
+    dans_1_semaine = maintenant - timedelta(weeks=1)
 
-    # Initialiser la requête de base
-    missions = Add_mission.objects.all()
+    # Si une date est spécifiée dans la recherche
+    if date_str:
+        try:
+            # Conversion de la date reçue en objet datetime
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
+            
+            # Récupérer les missions pour cette date
+            all_missions = Add_mission.objects.filter(date__date=date_obj)
 
-    # Filtrer par thème si un thème est spécifié
-    if theme:
-        missions = missions.filter(theme__icontains=theme)
+            if all_missions.exists():
+                messages.success(request, f"{all_missions.count()} mission(s) trouvée(s) pour le {date_str}.")
+            else:
+                messages.error(request, f"Aucune mission trouvée pour le {date_str}.")
 
-    # Filtrer par date si une date est spécifiée
-    if date_filtre == '24h':
-        missions = missions.filter(date__gte=dernieres_24h)
-    elif date_filtre == 'semaine':
-        missions = missions.filter(date__lt=dernieres_24h, date__gte=une_semaine)
-    elif date_filtre == 'archive':
-        missions = missions.filter(date__lt=une_semaine)
+            # Séparer les missions en récentes, anciennes et archivées
+            missions_recentes = all_missions.filter(date__gte=maintenant).order_by('-date')
+            missions_anciennes = all_missions.filter(date__lt=dans_72h, date__gte=dans_96h).order_by('-date')
+            missions_archivees = all_missions.filter(date__lt=dans_1_semaine).order_by('-date')
 
-    # Limiter les résultats à 6 par catégorie (tu peux ajuster le nombre)
-    missions_recentes = missions.filter(date__gte=dernieres_24h).order_by('-date')[:6]
-    missions_anciennes = missions.filter(date__lt=dernieres_24h, date__gte=une_semaine).order_by('-date')[:6]
-    missions_archivees = missions.filter(date__lt=une_semaine).order_by('-date')[:6]
+        except ValueError:
+            messages.error(request, "Format de date invalide. Veuillez sélectionner une date correcte.")
+    else:
+        # Si aucune date n'est donnée, afficher toutes les missions
+        all_missions = Add_mission.objects.all()
 
+        missions_recentes = all_missions.filter(date__gte=dans_72h).order_by('-date')
+        missions_anciennes = all_missions.filter(date__lt=dans_96h, date__gte=dans_1_semaine).order_by('-date')
+        missions_archivees = all_missions.filter(date__lt=dans_1_semaine).order_by('-date')[:6]
+
+    # Retourner toutes les missions et les messages
     return render(request, 'AlbinoApp/actualite.html', {
         'missions_recentes': missions_recentes,
         'missions_anciennes': missions_anciennes,
         'missions_archivees': missions_archivees,
-        'theme': theme,
-        'date_filtre': date_filtre,
+        'date_str': date_str  # Pour conserver la date dans le formulaire
     })
 
 def deconnexion(request):
