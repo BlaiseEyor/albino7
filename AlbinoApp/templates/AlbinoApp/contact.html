@@ -5,11 +5,28 @@
 {% block content %}
 
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        #splash {
+            transition: opacity 0.5s ease;
+        }
+    </style>
+    <div id="splash" class="splash-screen fixed inset-0 bg-gray-900 flex justify-center items-center z-50">
+        <div class="text-center">
+          <!-- Nouveau SVG minimaliste et élégant -->
+          <svg class="w-20 h-20 animate-spin text-yellow-300 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100">
+            <circle class="opacity-30" cx="50" cy="50" r="40" stroke="currentColor" stroke-width="10" />
+            <path class="opacity-90" fill="currentColor" d="M90 50a40 40 0 1 1-40-40v10a30 30 0 1 0 30 30h10z" />
+          </svg>
+      
+          <!-- Texte stylisé -->
+          <p class="text-white text-xl font-semibold mt-4 tracking-wide">
+            Chargement... <span class="text-yellow-300">Albino7</span>
+          </p>
+        </div>
+    </div>
     <section>
-        <nav
-            class="bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
+        <nav class="bg-gray-900 fixed w-full shadow-xl z-20 top-0 start-0">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="{% url 'index' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="{% static 'images/logo/logo_albi7.jpg' %}" class="rounded-full h-14 w-14 me-3" alt="Albino 7 Logo" />
@@ -223,6 +240,20 @@
                 form_contact.querySelector('#loading-spinner').style.display = 'none';
                 form_contact.querySelector('#save-text').style.display = 'block';
             });
+        });
+
+        // Gestion du splash screen avec transition fluide
+        window.addEventListener('load', () => {
+          const splash = document.getElementById('splash');
+          const mainContent = document.getElementById('main-content');
+        
+          setTimeout(() => {
+            splash.classList.add('opacity-0'); // Transition
+            setTimeout(() => {
+              splash.classList.add('hidden');
+              mainContent.classList.remove('hidden');
+            }, 400); // Laisser le temps à la transition d'opacité (0.5s)
+          }, 3000); // Splash visible 3 secondes
         });
     </script>
 
