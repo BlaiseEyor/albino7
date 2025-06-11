@@ -14,9 +14,9 @@ from datetime import datetime
 
 def index(request): 
     # Calculer la date et l'heure des dernières 24 heures
-    dernieres_72h = now() - timedelta(hours=72) 
+    dernieres_96h = now() - timedelta(hours=96) 
     # Récupérer les missions
-    missions = Add_mission.objects.filter(date__gte=dernieres_72h).order_by('-date')
+    missions = Add_mission.objects.filter(date__gte=dernieres_96h).order_by('-date')
     return render(request, 'AlbinoApp/index.html', {'missions': missions})
 
 def lireplus(request):
@@ -83,17 +83,14 @@ def actualite(request):
 
     # Calcul des seuils de temps pour les catégories
     maintenant = datetime.now()
-    dans_72h = maintenant - timedelta(hours=72)
     dans_96h = maintenant - timedelta(hours=96)
+    dans_120h = maintenant - timedelta(hours=120)
     dans_1_semaine = maintenant - timedelta(weeks=1)
 
     # Si une date est spécifiée dans la recherche
     if date_str:
         try:
-            # Conversion de la date reçue en objet datetime
             date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
-            
-            # Récupérer les missions pour cette date
             all_missions = Add_mission.objects.filter(date__date=date_obj)
 
             if all_missions.exists():
@@ -101,10 +98,10 @@ def actualite(request):
             else:
                 messages.error(request, f"Aucune mission trouvée pour le {date_str}.")
 
-            # Séparer les missions en récentes, anciennes et archivées
-            missions_recentes = all_missions.filter(date__gte=maintenant).order_by('-date')
-            missions_anciennes = all_missions.filter(date__lt=dans_72h, date__gte=dans_96h).order_by('-date')
-            missions_archivees = all_missions.filter(date__lt=dans_1_semaine).order_by('-date')
+            # Pas de filtre supplémentaire ici
+            missions_recentes = all_missions
+            missions_anciennes = []
+            missions_archivees = []
 
         except ValueError:
             messages.error(request, "Format de date invalide. Veuillez sélectionner une date correcte.")
@@ -112,8 +109,8 @@ def actualite(request):
         # Si aucune date n'est donnée, afficher toutes les missions
         all_missions = Add_mission.objects.all()
 
-        missions_recentes = all_missions.filter(date__gte=dans_72h).order_by('-date')
-        missions_anciennes = all_missions.filter(date__lt=dans_96h, date__gte=dans_1_semaine).order_by('-date')
+        missions_recentes = all_missions.filter(date__gte=dans_96h).order_by('-date')
+        missions_anciennes = all_missions.filter(date__lt=dans_120h, date__gte=dans_1_semaine).order_by('-date')
         missions_archivees = all_missions.filter(date__lt=dans_1_semaine).order_by('-date')[:6]
 
     # Retourner toutes les missions et les messages
