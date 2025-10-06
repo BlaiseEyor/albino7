@@ -37,6 +37,7 @@ def login(request):
 
         if check_password(password, user.password):  # Vérifie si le mot de passe correspond
             request.session['user_id'] = user.id  # Stocke l'ID de l'utilisateur dans la session
+            request.session["just_logged_in"] = True
             return JsonResponse({'success': True, 'message' : "Connexion réussie, redirection en cours...", 'redirect': reverse('accueil')})
         else:
             return JsonResponse({"error_message": "Le mot de passe que vous avez entrer est incorrect!"})

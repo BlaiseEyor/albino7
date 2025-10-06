@@ -10,6 +10,39 @@
         #splash {
             transition: opacity 0.5s ease;
         }
+        .btn-login {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 0.5rem;
+            background-color: transparent;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+    
+        .btn-login .icon {
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.3s ease;
+        }
+    
+        .btn-login:hover {
+            background-color: #1f2937;
+            /* gris foncé */
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+    
+        .btn-login:hover .icon {
+            transform: translateX(4px);
+        }
     </style>
     <!-- <div id="splash" class="splash-screen fixed inset-0 bg-gray-900 flex justify-center items-center z-50">
         <div class="text-center">
@@ -31,8 +64,13 @@
                     <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Albino 7</span> -->
                 </a>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <a href="{% url 'login' %}" class="text-white hover:text-white border border-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2">
-                        Esapce personnel
+                    <a href="{% url 'login' %}" class="btn-login">
+                        <span>Espace personnel</span>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5.121 17.804A12.083 12.083 0 0112 15c2.21 0 4.275.628 6 1.717M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                     </a>
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
@@ -61,35 +99,41 @@
     <div class="h-14 lg:h-14"></div>
     <section class="py-10 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-6">
-            <form method="GET" action="{% url 'actualite' %}" class="p-8 rounded-lg shadow-lg w-full sm:w-11/12 md:w-3/4 lg:w-1/2">
-                <h2 class="text-2xl font-semibold text-center mb-6 text-gray-900">Recherche de missions</h2>
-            
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <!-- Champ pour sélectionner une date -->
-                    <div class="col-span-2">
-                        <label for="date" class="block text-white">Date :</label>
-                        <input type="date" name="date" id="date" class="w-full text-gray-900 px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" value="{{ request.GET.date }}">
+            <div class="flex justify-center mb-12">
+                <form method="GET" action="{% url 'actualite' %}" class="bg-gray-800 p-8 rounded-xl shadow-2xl border-t-4 border-yellow-400 w-full md:w-3/4 lg:w-2/3">
+                    <h2 class="text-2xl font-bold text-center mb-6 text-yellow-400">Filtrer par Date</h2>
+                
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 items-end">
+                        
+                        <div class="col-span-1 sm:col-span-3">
+                            <label for="date" class="block text-sm font-medium text-gray-300 mb-1">Date de Publication :</label>
+                            <input type="date" name="date" id="date" 
+                                   class="w-full text-white bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200" 
+                                   value="{{ request.GET.date }}">
+                        </div>
+                
+                        <div class="col-span-1 sm:col-span-2">
+                            <button type="submit" 
+                                    class="w-full py-2.5 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-500 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 shadow-md">
+                                Rechercher
+                            </button>
+                        </div>
                     </div>
-            
-                    <!-- Bouton de recherche -->
-                    <div class="flex justify-center items-end">
-                        <button type="submit" class="w-full xl:w-auto py-2 bg-yellow-400 text-gray-900 rounded-lg hover:bg-yellow-500 transition duration-300">
-                            Rechercher
-                        </button>
-                    </div>
-                </div>
-            </form>
-            
-            <!-- Bouton pour réinitialiser les résultats -->
-            <div class="mt-4 text-center">
-                <button id="resetButton" class="flex items-center justify-center max-w-7xl mx-auto gap-2 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition">
-                    <svg id="loadingSpinner" class="hidden w-5 h-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                </form>
+            </div>
+
+            <div class="mt-4 text-center mb-10">
+                <button id="resetButton" class="inline-flex items-center justify-center gap-2 px-6 py-2 bg-gray-800 text-white rounded-lg border border-gray-600 hover:bg-gray-700 transition duration-300 shadow-lg group">
+                    <svg id="loadingSpinner" class="hidden w-5 h-5 animate-spin text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor"
                             d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z">
                         </path>
                     </svg>
-                    <span id="resetText">Réinitialiser la recherche</span>
+                    <svg id="resetIcon" class="w-5 h-5 text-yellow-400 group-hover:text-white transition duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                    <span id="resetText" class="font-medium">Réinitialiser la recherche</span>
                 </button>
             </div>
             
@@ -113,24 +157,32 @@
                     </div>
                 {% endfor %}
             </div>
-        {% endif %}
-        
+            {% endif %}
             <div class="h-10 lg:h-10"></div>
-    
             <!-- <h2 class="text-2xl font-bold mb-8 text-center text-yellow-400">Suite de nos annonces</h2> -->
-            <div id="missionsContainer">
+            <div id="missionsContainer" class="space-y-12">
                 {% if date_str %}
-                <h2 class="text-2xl font-bold text-white text-center">Résultats pour le {{ date_str }}</h2>
+                <h2 class="text-3xl font-bold text-white text-center border-b-2 border-yellow-400/50 pb-3 mb-8">
+                    Résultats pour le <span class="text-yellow-400">{{ date_str }}</span>
+                </h2>
                 {% if missions_recentes %}
-                <div class="mt-8 grid md:grid-cols-3 gap-8">
+                <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {% for mission in missions_recentes %}
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg fade-in-left image-container">
-                        <img src="{{ mission.imgmission_url }}" alt="Image article"
-                            class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105"
-                            onclick="openModal('{{ mission.imgmission_url }}')" />
+                    <div
+                        class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl fade-in-left group hover:shadow-yellow-400/40 transition duration-300 transform hover:-translate-y-1 border border-gray-700">
+                        <div class="relative overflow-hidden">
+                            <img src="{{ mission.imgmission_url }}" alt="Image article"
+                                class="w-full h-48 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                                onclick="openModal('{{ mission.imgmission_url }}')" />
+                            <span class="absolute top-3 right-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                {{ mission.date|date:"d M Y" }}
+                            </span>
+                        </div>
+            
                         <div class="p-5">
-                            <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
-                            <p class="text-gray-400 text-sm">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400 group-hover:text-white transition duration-200">{{ mission.theme }}</h3>
+            
+                            <p class="text-gray-400 text-sm mb-3">
                                 <span class="short-text">
                                     {{ mission.description|truncatewords:20 }}...
                                 </span>
@@ -138,33 +190,60 @@
                                     {{ mission.description }}
                                 </span>
                             </p>
-                            <p class="text-gray-500 text-xs mt-2">Publié il y a {{ mission.date|timesince }}.</p>
-                            <button class="text-yellow-400 hover:underline read-more-btn">Lire plus</button>
+            
+                            <p class="text-gray-500 text-xs mt-2">Publié il y a **{{ mission.date|timesince }}**.</p>
+            
+                            <button
+                                class="text-yellow-400 hover:text-yellow-300 hover:underline read-more-btn font-medium mt-2 mb-4 transition duration-200">
+                                Lire plus
+                            </button>
+            
                             <a href="{{ mission.lien }}" target="_blank"
-                                class="block mt-3 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-semibold hover:bg-yellow-500 transition">
-                                Voir l'annonce
+                                class="block bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-bold hover:bg-yellow-500 transition duration-300 shadow-md">
+                                Voir l'annonce complète
                             </a>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
                 {% else %}
-                <p class="text-red-500 text-sm text-center">Aucune annonce pour cette date.</p>
+                <div class="flex flex-col items-center justify-center py-6">
+                    <!-- SVG illustration -->
+                    <svg class="w-16 h-16 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 17v-4h6v4m2 4H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2z" />
+                    </svg>
+                    <!-- Message principal -->
+                    <p class="text-gray-400 text-md text-center mb-2">
+                        Aucune annonce n'est disponible pour le moment.
+                    </p>
+                    <!-- Petite description / conseil -->
+                    <p class="text-gray-400 text-xs text-center max-w-xs">
+                        Vous pouvez publier une nouvelle annonce ou vérifier les annonces récentes pour voir si elles correspondent à
+                        vos besoins.
+                    </p>
+                </div>
                 {% endif %}
-            
                 {% else %}
-            
+                <h2 class="text-3xl font-bold text-white border-b-2 border-yellow-400/50 pb-3">À la une</h2>
                 {% if missions_recentes %}
-                <h2 class="text-2xl font-bold text-white">À la une</h2>
-                <div class="mt-8 grid md:grid-cols-3 gap-8">
+                <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {% for mission in missions_recentes %}
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg fade-in-left image-container">
-                        <img src="{{ mission.imgmission_url }}" alt="Image article"
-                            class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105"
-                            onclick="openModal('{{ mission.imgmission_url }}')" />
+                    <div
+                        class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl fade-in-left group hover:shadow-yellow-400/40 transition duration-300 transform hover:-translate-y-1 border border-gray-700">
+                        <div class="relative overflow-hidden">
+                            <img src="{{ mission.imgmission_url }}" alt="Image article"
+                                class="w-full h-48 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                                onclick="openModal('{{ mission.imgmission_url }}')" />
+                            <span class="absolute top-3 right-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                {{ mission.date|date:"d M Y" }}
+                            </span>
+                        </div>
+            
                         <div class="p-5">
-                            <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
-                            <p class="text-gray-400 text-sm">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400 group-hover:text-white transition duration-200">{{ mission.theme }}</h3>
+                            <p class="text-gray-400 text-sm mb-3">
                                 <span class="short-text">
                                     {{ mission.description|truncatewords:20 }}...
                                 </span>
@@ -172,93 +251,171 @@
                                     {{ mission.description }}
                                 </span>
                             </p>
-                            <p class="text-gray-500 text-xs mt-2">Publié il y a {{ mission.date|timesince }}.</p>
-                            <button class="text-yellow-400 hover:underline read-more-btn">Lire plus</button>
+            
+                            <p class="text-gray-500 text-xs mt-2">Publié il y a **{{ mission.date|timesince }}**.</p>
+            
+                            <button
+                                class="text-yellow-400 hover:text-yellow-300 hover:underline read-more-btn font-medium mt-2 mb-4 transition duration-200">
+                                Lire plus
+                            </button>
+            
                             <a href="{{ mission.lien }}" target="_blank"
-                                class="block mt-3 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-semibold hover:bg-yellow-500 transition">
-                                Voir l'annonce
+                                class="block bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-bold hover:bg-yellow-500 transition duration-300 shadow-md">
+                                Voir l'annonce complète
                             </a>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
                 {% else %}
-                <p class="text-red-500 text-sm flex items-center justify-center">Aucune annonce récente n'est disponible pour le
-                    moment</p>
-                {% endif %}
-            
-                {% if missions_anciennes %}
-                <h2 class="text-2xl font-bold text-white mt-10">Anciennes annonces</h2>
-                <div class="mt-8 grid md:grid-cols-3 gap-8">
-                    {% for mission in missions_anciennes %}
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg fade-in-left image-container">
-                        <img src="{{ mission.imgmission_url }}" alt="Image article"
-                            class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105"
-                            onclick="openModal('{{ mission.imgmission_url }}')" />
-                        <div class="p-5">
-                            <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
-                            <p class="text-gray-400 text-sm">
-                                <span class="short-text">
-                                    {{ mission.description|truncatewords:20 }}...
-                                </span>
-                                <span class="full-text hidden">
-                                    {{ mission.description }}
-                                </span>
-                            </p>
-                            <p class="text-gray-500 text-xs mt-2">Publié il y a {{ mission.date|timesince }}.</p>
-                            <button class="text-yellow-400 hover:underline read-more-btn">Lire plus</button>
-                            <a href="{{ mission.lien }}" target="_blank"
-                                class="block mt-3 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-semibold hover:bg-yellow-500 transition">
-                                Voir l'annonce
-                            </a>
-                        </div>
-                    </div>
-                    {% endfor %}
+                <div class="flex flex-col items-center justify-center py-6">
+                    <!-- SVG illustration -->
+                    <svg class="w-16 h-16 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 17v-4h6v4m2 4H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2z" />
+                    </svg>
+                    <!-- Message principal -->
+                    <p class="text-gray-400 text-lg text-center mb-2">
+                        Aucune annonce recente n'est disponible pour le moment.
+                    </p>
+                    <!-- Petite description / conseil -->
+                    <p class="text-gray-400 text-md text-center max-w-xs">
+                        Vous pouvez publier une annonce ou vérifier les annonces récentes pour voir si elles correspondent à
+                        vos besoins.
+                    </p>
                 </div>
-                {% else %}
-                <div class="h-10 lg:h-10"></div>
-                <p class="text-red-500 text-sm flex items-center justify-center">Aucune ancienne annonce n'est disponible pour le
-                    moment.</p>
                 {% endif %}
+                <div class="h-8 lg:h-8"></div>
+                <div class="mt-12">
+                    <h2 class="text-3xl font-bold text-white border-b-2 border-yellow-400/50 pb-3">Anciennes annonces</h2>
+                    {% if missions_anciennes %}
+                    <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {% for mission in missions_anciennes %}
+                        <div
+                            class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl fade-in-left group hover:shadow-yellow-400/40 transition duration-300 transform hover:-translate-y-1 border border-gray-700">
+                            <div class="relative overflow-hidden">
+                                <img src="{{ mission.imgmission_url }}" alt="Image article"
+                                    class="w-full h-48 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                                    onclick="openModal('{{ mission.imgmission_url }}')" />
+                                <span
+                                    class="absolute top-3 right-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                    {{ mission.date|date:"d M Y" }}
+                                </span>
+                            </div>
             
-                {% if missions_archivees %}
-                <h2 class="text-2xl font-bold text-white mt-10">Annonces archivées</h2>
-                <div class="mt-8 grid md:grid-cols-3 gap-8">
-                    {% for mission in missions_archivees %}
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg fade-in-left image-container">
-                        <img src="{{ mission.imgmission_url }}" alt="Image article"
-                            class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105"
-                            onclick="openModal('{{ mission.imgmission_url }}')" />
-                        <div class="p-5">
-                            <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
-                            <p class="text-gray-400 text-sm">
-                                <span class="short-text">
-                                    {{ mission.description|truncatewords:20 }}...
-                                </span>
-                                <span class="full-text hidden">
-                                    {{ mission.description }}
-                                </span>
-                            </p>
-                            <p class="text-gray-500 text-xs mt-2">Publié il y a {{ mission.date|timesince }}.</p>
-                            <button class="text-yellow-400 hover:underline read-more-btn">Lire plus</button>
-                            <a href="{{ mission.lien }}" target="_blank"
-                                class="block mt-3 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-semibold hover:bg-yellow-500 transition">
-                                Voir l'annonce
-                            </a>
+                            <div class="p-5">
+                                <h3 class="text-xl font-bold mb-2 text-yellow-400 group-hover:text-white transition duration-200">{{ mission.theme }}</h3>
+            
+                                <p class="text-gray-400 text-sm mb-3">
+                                    <span class="short-text">
+                                        {{ mission.description|truncatewords:20 }}...
+                                    </span>
+                                    <span class="full-text hidden">
+                                        {{ mission.description }}
+                                    </span>
+                                </p>
+            
+                                <p class="text-gray-500 text-xs mt-2">Publié il y a **{{ mission.date|timesince }}**.</p>
+            
+                                <button
+                                    class="text-yellow-400 hover:text-yellow-300 hover:underline read-more-btn font-medium mt-2 mb-4 transition duration-200">
+                                    Lire plus
+                                </button>
+            
+                                <a href="{{ mission.lien }}" target="_blank"
+                                    class="block bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-bold hover:bg-yellow-500 transition duration-300 shadow-md">
+                                    Voir l'annonce complète
+                                </a>
+                            </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                    {% else %}
+                    <div class="flex flex-col items-center justify-center py-6">
+                        <!-- SVG illustration -->
+                        <svg class="w-16 h-16 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-4h6v4m2 4H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2z" />
+                        </svg>
+                        <!-- Message principal -->
+                        <p class="text-gray-400 text-lg text-center mb-2">
+                            Aucune ancienne annonce archivée n'est disponible pour le moment.
+                        </p>
+                        <!-- Petite description / conseil -->
+                        <p class="text-gray-400 text-md text-center max-w-xs">
+                            Vous pouvez publier une nouvelle annonce ou vérifier les annonces récentes pour voir si elles correspondent à
+                            vos besoins.
+                        </p>
+                    </div>
+                    {% endif %}
                 </div>
-                {% else %}
-                <div class="h-10 lg:h-10"></div>
-                <p class="text-red-500 text-sm flex items-center justify-center">Aucune annonce archivée n'est disponible pour le
-                    moment.</p>
-                {% endif %}
+                <div class="h-8 lg:h-8"></div>
+                <div class="mt-12">
+                    <h2 class="text-3xl font-bold text-white border-b-2 border-yellow-400/50 pb-3">Annonces archivées</h2>
+                    {% if missions_archivees %}
+                    <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {% for mission in missions_archivees %}
+                        <div
+                            class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl fade-in-left group hover:shadow-yellow-400/40 transition duration-300 transform hover:-translate-y-1 border border-gray-700">
+                            <div class="relative overflow-hidden">
+                                <img src="{{ mission.imgmission_url }}" alt="Image article"
+                                    class="w-full h-48 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                                    onclick="openModal('{{ mission.imgmission_url }}')" />
+                                <span
+                                    class="absolute top-3 right-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                    {{ mission.date|date:"d M Y" }}
+                                </span>
+                            </div>
             
-                {% endif %}
+                            <div class="p-5">
+                                <h3 class="text-xl font-bold mb-2 text-yellow-400 group-hover:text-white transition duration-200">{{ mission.theme }}</h3>
             
+                                <p class="text-gray-400 text-sm mb-3">
+                                    <span class="short-text">
+                                        {{ mission.description|truncatewords:20 }}...
+                                    </span>
+                                    <span class="full-text hidden">
+                                        {{ mission.description }}
+                                    </span>
+                                </p>
+                                <p class="text-gray-500 text-xs mt-2">Publié il y a **{{ mission.date|timesince }}**.</p>
+                                <button
+                                    class="text-yellow-400 hover:text-yellow-300 hover:underline read-more-btn font-medium mt-2 mb-4 transition duration-200">
+                                    Lire plus
+                                </button>
+                                <a href="{{ mission.lien }}" target="_blank"
+                                    class="block bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg text-center font-bold hover:bg-yellow-500 transition duration-300 shadow-md">
+                                    Voir l'annonce complète
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="flex flex-col items-center justify-center py-6">
+                        <!-- SVG illustration -->
+                        <svg class="w-16 h-16 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-4h6v4m2 4H7a2 2 0 01-2-2V7a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2z" />
+                        </svg>
+                        <!-- Message principal -->
+                        <p class="text-gray-500 text-lg text-center mb-2">
+                            Aucune ancienne annonce n'est disponible pour le moment.
+                        </p>
+                    
+                        <!-- Petite description / conseil -->
+                        <p class="text-gray-400 text-md text-center max-w-xs">
+                            Vous pouvez publier une nouvelle annonce ou vérifier les annonces récentes pour voir si elles correspondent à
+                            vos besoins.
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
-
         </div>
     </section>
         

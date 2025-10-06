@@ -27,6 +27,8 @@ def accueil(request):
     if not user:
         messages.error(request, "Veuillez vous connecter pour accéder à cette page")
         return custom_permission_denied_view(request)
+    
+    login_success = request.session.pop("just_logged_in", False)
 
     # Compteur visiteurs (unique par session)
     if not request.session.get("counted", False):
@@ -44,6 +46,7 @@ def accueil(request):
         'visitor_count': count, 
         'total_avis': total_avis,
         'total_pub': total_pub,
+        'login_success': login_success
     }
 
     return render(request, 'Dashadmin/accueil.html', context)

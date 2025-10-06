@@ -174,7 +174,7 @@
                             <div class="error-message text-red-500 text-sm mt-1"></div>
                           </div>
                         </div>
-                        <div class="flex items-start justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <div class="flex items-start justify-center p-4 md:p-5 rounded-b dark:border-gray-600">
                             <button type="submit" name="send" class="btn text-white bg-yellow-300 hover:bg-yellow-300 focus:ring-2 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-3 text-center dark:bg-yellow-300 dark:hover:bg-yellow-300 dark:focus:ring-yellow-300">
                               <span id="save-text">Envoyez Message</span>
                               <svg id="loading-spinner" style="display: none;" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -201,58 +201,80 @@
             </div>
     </footer>
 
-    <script>
-        const form_contact = document.forms['form-contact'];
-        const successToast = document.getElementById('toast-success');
-        const errorToast = document.getElementById('toast-danger');
-    
-        form_contact.addEventListener('submit', (event) => {
-            event.preventDefault();
-            form_contact.send.disabled = true;
-            form_contact.querySelector('#loading-spinner').style.display = 'block';
-            form_contact.querySelector('#save-text').style.display = 'none';
-            const formData = new FormData(form_contact);
-    
-            fetch("{% url 'contact' %}", {
-                method: 'POST',
-                headers: {'X-CSRFToken': '{{ csrf_token }}'},
-                body: formData
-            }).then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                if (data.success) {
-                    successToast.querySelector('.text-sm').textContent = data.message;
-                    successToast.style.display = 'flex';  // Show success toast
-                    setTimeout(() => successToast.style.display = 'none', 10000);  // Hide after 3 seconds
-                    form_contact.reset();
-                } else {
-                    errorToast.querySelector('.text-sm').textContent = data.error_message;
-                    errorToast.style.display = 'flex';  // Show error toast
-                    setTimeout(() => errorToast.style.display = 'none', 10000);  // Hide after 3 seconds
-                }
-            }).catch((error) => {
-                console.error(error);
-            }).finally(() => {
-                form_contact.send.disabled = false;
-                form_contact.querySelector('#loading-spinner').style.display = 'none';
-                form_contact.querySelector('#save-text').style.display = 'block';
-            });
-        });
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script>
+    const form_contact = document.forms['form-contact'];
 
-        // Gestion du splash screen avec transition fluide
-        window.addEventListener('load', () => {
-          const splash = document.getElementById('splash');
-          const mainContent = document.getElementById('main-content');
-        
-          setTimeout(() => {
-            splash.classList.add('opacity-0'); // Transition
-            setTimeout(() => {
-              splash.classList.add('hidden');
-              mainContent.classList.remove('hidden');
-            }, 400); // Laisser le temps à la transition d'opacité (0.5s)
-          }, 3000); // Splash visible 3 secondes
+    form_contact.addEventListener('submit', (event) => {
+        event.preventDefault();
+        form_contact.send.disabled = true;
+        form_contact.querySelector('#loading-spinner').style.display = 'block';
+        form_contact.querySelector('#save-text').style.display = 'none';
+        const formData = new FormData(form_contact);
+
+        fetch("{% url 'contact' %}", {
+            method: 'POST',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            body: formData
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Succès',
+                    text: data.message,
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true
+                });
+                form_contact.reset();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    text: data.error_message,
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            }
+        }).catch((error) => {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur serveur',
+                text: "Une erreur inattendue est survenue. Veuillez réessayer.",
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+            });
+        }).finally(() => {
+            form_contact.send.disabled = false;
+            form_contact.querySelector('#loading-spinner').style.display = 'none';
+            form_contact.querySelector('#save-text').style.display = 'block';
         });
-    </script>
+    });
+
+    // Splash screen
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      const mainContent = document.getElementById('main-content');
+    
+      setTimeout(() => {
+        splash.classList.add('opacity-0');
+        setTimeout(() => {
+          splash.classList.add('hidden');
+          mainContent.classList.remove('hidden');
+        }, 400);
+      }, 3000);
+    });
+</script>
+
 
 
 

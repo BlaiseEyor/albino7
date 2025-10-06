@@ -4,6 +4,34 @@
 
 {% block content %}
 
+<style>
+    .action-btn {
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        color: #1f2937;
+        padding: 0.625rem 1.25rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+    }
+
+    .action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+</style>
+
 <section>
     <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -166,22 +194,22 @@
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-yellow-300 font-bold">
                                     ID
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-yellow-300 font-bold">
                                     Noms
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-yellow-300 font-bold">
                                     Emails
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-yellow-300 font-bold">
                                     Sujets
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-yellow-300 font-bold">
                                     Message
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-8 py-3 text-yellow-300 font-bold">
                                     Statut
                                 </th>
                             </tr>
@@ -190,8 +218,8 @@
                             {% for avi in avis %}
                               
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ avi.id }}
+                                <th scope="row" class="px-6 py-4 font-bold text-yellow-300 text-md whitespace-nowrap">
+                                    #{{ avi.id }}
                                 </th>
                                 <td class="px-6 py-4">
                                     {{ avi.nom }}
@@ -205,9 +233,13 @@
                                 <td class="px-6 py-4">
                                     {{ avi.message }}
                                 </td>
-                                <td class="px-6 py-4 text-right">
-                                    <a href="#"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Répondre</a>
+                                <td class="px-8 py-4">
+                                    <a href="#" class="action-btn">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
+                                        </svg>
+                                        Répondre
+                                    </a>
                                 </td>
                             </tr>
                             {% endfor %}
