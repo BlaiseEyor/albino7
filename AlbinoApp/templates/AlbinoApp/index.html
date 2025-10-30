@@ -778,7 +778,8 @@
                 <div class="animate-on-scroll bg-gray-800 rounded-lg overflow-hidden shadow-lg image-container">
                     <img src="{{ mission.imgmission_url }}" alt="Image article"
                         class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105"
-                        onclick="openLightbox('{{ mission.imgmission_url }}')" />
+                        onclick="openModal('{{ mission.imgmission_url }}')" /> ```
+
                     <div class="p-5">
                         <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
                         <p class="text-gray-400 text-sm">
@@ -908,22 +909,22 @@
                 </div>
             </div>
     </footer>
+
     <section>
         <button id="scrollToTopBtn"
             class="fixed bottom-5 right-5 p-3 bg-yellow-300 text-white rounded shadow-lg hover:bg-orange-500 cursor-pointer focus:outline-none">
             ↑
         </button>
     </section>
+
     <section>
-        <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300">
-            <div class="relative max-w-4xl w-full p-4">
-                <!-- Bouton de fermeture -->
-                <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-4xl hover:text-yellow-400 transition">
+        <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300" onclick="closeModal(event)">
+            <div class="relative max-w-lg w-full mx-4 bg-gray-800 rounded-xl p-3 shadow-2xl transform transition-transform duration-300 scale-100">
+                <button onclick="closeModal()"
+                    class="absolute -top-3 -right-3 text-2xl font-bold bg-yellow-400 text-gray-900 rounded-full w-8 h-8 flex items-center justify-center hover:bg-yellow-500 transition z-10">
                     &times;
                 </button>
-        
-                <!-- Image affichée -->
-                <img id="modalImage" src="" alt="Zoom image" class="rounded-lg w-full max-h-[80vh] object-contain shadow-2xl" />
+                <img id="modalImage" src="" alt="Zoom image" class="rounded-lg w-full max-h-[80vh] object-contain" />
             </div>
         </div>
     </section>
@@ -1031,23 +1032,44 @@
     </script>
 
     <script>
-  function openLightbox(imageSrc) {
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
+        const modal = document.getElementById("imageModal");
+        const modalContent = modal.querySelector('.relative.max-w-xl'); // Cibler le conteneur gris de l'image
 
-    lightboxImg.src = imageSrc;
-    lightbox.classList.remove("hidden");
-}
+        // Ouvre le modal et affiche l'image
+        function openModal(imageSrc) {
+            const modalImage = document.getElementById("modalImage");
 
-function closeLightbox() {
-    document.getElementById("lightbox").classList.add("hidden");
-}
+            modalImage.src = imageSrc;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.body.style.overflow = 'hidden'; // Empêche le défilement du corps
+        }
 
-// Fermer en cliquant sur le fond mais pas sur l'image
-document.getElementById("lightbox").addEventListener('click', function(e) {
-    if(e.target.id === 'lightbox') closeLightbox();
-});
+        // Ferme le modal
+        function closeModal() {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.style.overflow = ''; // Rétablit le défilement du corps
+        }
 
-</script>
+        // Gère la fermeture en cliquant sur le fond noir (mais pas sur la boîte interne)
+        modal.addEventListener('click', function (event) {
+            if (event.target.id === 'imageModal') {
+                closeModal();
+            }
+        });
+
+        // Empêche la propagation du clic depuis le conteneur de l'image vers le fond
+        modalContent.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        // Gestion de la fermeture par la touche Échap
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
 
 {% endblock content %}

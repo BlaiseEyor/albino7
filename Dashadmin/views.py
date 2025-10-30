@@ -229,6 +229,7 @@ def modifier_mission(request):
         mission_id = request.POST.get('id')
         nv_theme = request.POST.get('nv_theme')
         nv_lien = request.POST.get('nv_lien')
+        nv_date = request.POST.get('nv_date')
         nv_description = request.POST.get('nv_description')
         nv_img_mission = request.FILES.get('nv_img_mission')
 
@@ -239,6 +240,7 @@ def modifier_mission(request):
             mission = Add_mission.objects.get(id=mission_id)
             mission.theme = nv_theme
             mission.lien = nv_lien
+            mission.date = nv_date
             mission.description = nv_description
 
             if nv_img_mission:

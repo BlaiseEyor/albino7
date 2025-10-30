@@ -10,6 +10,39 @@
         #splash {
             transition: opacity 0.5s ease;
         }
+        .btn-login {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 0.5rem;
+            background-color: transparent;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+    
+        .btn-login .icon {
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.3s ease;
+        }
+    
+        .btn-login:hover {
+            background-color: #1f2937;
+            /* gris foncé */
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+    
+        .btn-login:hover .icon {
+            transform: translateX(4px);
+        }
     </style>
     <div id="splash" class="splash-screen fixed inset-0 bg-gray-900 flex justify-center items-center z-50">
         <div class="text-center">
@@ -30,8 +63,13 @@
                     <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Albino 7</span> -->
                 </a>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <a href="{% url 'login' %}" class="text-white hover:text-white border border-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block me-2 mb-2">
-                        Esapce personnel
+                    <a href="{% url 'login' %}" class="btn-login">
+                        <span>Espace personnel</span>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5.121 17.804A12.083 12.083 0 0112 15c2.21 0 4.275.628 6 1.717M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                     </a>
                     <!-- <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" type="button"
                         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -202,7 +240,7 @@
     </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <script>
+<script>
     const form_contact = document.forms['form-contact'];
 
     form_contact.addEventListener('submit', (event) => {

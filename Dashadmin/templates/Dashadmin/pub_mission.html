@@ -730,17 +730,18 @@
                                 <label class="block mb-2 text-sm font-medium text-white">Nouveau thème de la pub</label>
                                 <input name="nv_theme" value="{{ publ.theme }}" type="text" class="bg-gray-50 border border-yellow-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5" placeholder="Theme"/>
                             </div>
-
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-white">Nouveau lien de redirection vers YouTube ou Facebook pour illustration (si disponible) de la pub</label>
                                 <input name="nv_lien" value="{{ publ.lien }}" type="url" id="website" class="bg-gray-50 border border-yellow-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-400 block w-full p-2.5" placeholder="Lien"/>
                             </div>
-                    
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-white">Nouvelle date de la pub</label>
+                                <input name="nv_date" value="{{ publ.date }}" type="date" id="date" class="bg-gray-50 border border-yellow-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-400 block w-full p-2.5"/>
+                            </div>
                             <div class="md:col-span-2">
                                 <label for="message" class="block mb-2 text-sm font-medium text-white">Nouvelle description de la pub</label>
                                 <textarea name="nv_description" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-yellow-400 focus:ring-yellow-400 focus:border-yellow-400" placeholder="Laissez une description...">{{ publ.description }}</textarea>
                             </div>
-                            
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-white" for="user_avatar">Nouvelle image de la pub</label>
                                 <input name="nv_img_mission" class="block w-full text-sm text-gray-900 border border-yellow-400 rounded-lg cursor-pointer bg-white" aria-describedby="user_avatar_help" id="user_avatar" type="file">
@@ -803,7 +804,7 @@
 <script>
     const formPub_mission = document.forms['form-mission'];
 
-    // 🟢 AJOUT (publication mission)
+    // AJOUT (publication mission)
     formPub_mission.addEventListener('submit', async (event) => {
         event.preventDefault();
 
