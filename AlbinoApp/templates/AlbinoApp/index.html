@@ -4,9 +4,10 @@
 
 {% block content %}
 
-
+    <meta name="description" content="Albino7 est une plateforme dédiée aux albinos : informations, conseils, soutien et actualités pour mieux vivre et s’épanouir.">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <title>Albino7 – Communauté et ressources pour les albinos</title>
     <style>
         #splash {
             transition: opacity 0.5s ease;
@@ -346,11 +347,11 @@
                 </div>
             </div>
             <div class="flex justify-center animate-on-scroll">
-                <!-- <video class="w-full max-w-full rounded-lg shadow-xl" controls>
+                <video class="w-full max-w-full rounded-lg shadow-xl" controls>
                     <source src="{% static 'videos/details.mp4' %}" type="video/mp4">
                     Votre navigateur ne supporte pas la balise vidéo.
-                </video> -->
-                <img class="animate-on-scroll rounded-full w-96 h-96 object-cover" src="{% static 'images/caroussel/car1.png' %}" alt="image description">
+                </video>
+                <!-- <img class="animate-on-scroll rounded-full w-96 h-96 object-cover" src="{% static 'images/caroussel/car1.png' %}" alt="image description"> -->
             </div>
         </div>
     </section>
@@ -730,33 +731,33 @@
                 </p>
                 <div class="h-10 lg:h-10"></div>
                 <!-- GRID responsive -->
-                <div class="animate-on-scroll grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
+                <div
+                    class="animate-on-scroll grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/blog11.jpg' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F1etC1bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/blog10.jpg' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F2etC3bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/blog8.jpg' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F3etC3bis.png' %}" alt="">
                     </div>
                     <div class="m-2 fade-in-left image-container">
-                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/blog9.jpg' %}" alt="">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F4etC1bis.png' %}" alt="">
                     </div>
                     <!-- Tu peux réactiver les suivants -->
-                    <!--
-                  <div class="m-2 fade-in-left image-container">
-                    <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/blog7.jpg' %}" alt="">
-                  </div>
-                  
-                  <div class="m-2 fade-in-left image-container">
-                    <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F6etC1.png' %}" alt="">
-                  </div>
-                  
-                  <div class="m-2 fade-in-left image-container">
-                    <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F7etC1.png' %}" alt="">
-                  </div>
-                  -->
+                
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F5etC1bis.png' %}" alt="">
+                    </div>
+                
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F6etC1.png' %}" alt="">
+                    </div>
+                
+                    <div class="m-2 fade-in-left image-container">
+                        <img class="w-full h-auto rounded-lg object-cover image" src="{% static 'images/blogs/F7etC1.png' %}" alt="">
+                    </div>
                 </div>
             </div>
     </section>
@@ -778,7 +779,7 @@
                 <div class="animate-on-scroll bg-gray-800 rounded-lg overflow-hidden shadow-lg image-container">
                     <img src="{{ mission.imgmission_url }}" alt="Image article"
                         class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transition hover:scale-105"
-                        onclick="openModal('{{ mission.imgmission_url }}')" /> ```
+                        onclick="openModal('{{ mission.imgmission_url }}')" />
 
                     <div class="p-5">
                         <h3 class="text-xl font-semibold mb-2">{{ mission.theme }}</h3>
@@ -810,7 +811,7 @@
             {% endif %}
              <!-- Agrandir les images a chaque clic sur elle -->
             <!-- Lightbox -->
-            <div id="lightbox" class="max-w-md h-30 mx-auto px-4 m-4 fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div id="lightbox" class="max-w-md h-30 mx-auto px-4 m-4 fixed inset-0 bg-white bg-opacity-50 items-center justify-center z-50 hidden">
                 <span class="absolute top-4 right-6 text-3xl font-bold cursor-pointer text-gray-900"
                     onclick="closeLightbox()">&times;</span>
                 <div class="relative">
