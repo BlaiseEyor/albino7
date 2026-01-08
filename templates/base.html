@@ -14,19 +14,7 @@
     {% block content %}
     
     {% endblock content %}
-    {% if user.is_authenticated %}
-    <script>
-        let countdown = 300;
-        const timer = setInterval(function() {
-            countdown--;
-            if (countdown <= 0) {
-                clearInterval(timer);
-                alert('Votre session a expiré. Vous allez être redirigé vers la page de connexion.');
-                window.location.href = "{% url 'login' %}";
-            }
-        }, 1000);
-    </script>
-    {% endif %}
+    
     
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
